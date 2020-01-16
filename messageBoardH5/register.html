@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/tips_save.js"></script>
+		<script type="text/javascript" src="js/authCode.js"></script>
+	</head>
+	<body>
+		<div class="bg">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#"><span class="firstName">有问有答</span></a>
+					</div>
+					<div>
+						<ul class="nav navbar-nav">
+							<li><a href="fristPage.html">首页</a></li>
+							<li><a href="topics.html">话题</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="register.html">注册</a></li>
+							<li><a href="login.html">登录</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">用户基本信息</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-1 panel-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group" id="act">
+										<label for="account" class="col-md-4 control-label">
+											<span class="red">*</span> 账户
+											<span class="glyphicon glyphicon-user annotation symbol"></span>
+										</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" id="account" placeholder="请输入您的账户">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="accountTips"></div>
+									</div>
+									<div class="form-group" id="ipwd">
+										<label for="inputPassword2" class="col-md-4 control-label">
+											<span class="red">*</span> 密码
+											<span class="glyphicon glyphicon-lock annotation symbol "></span>
+										</label>
+										<div class="col-md-8">
+											<input type="password" class="form-control" id="inputPassword1" placeholder="请设置密码">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="ipwd1"></div>
+									</div>
+									<div class="form-group" id="ipw">
+										<label for="inputPassword3" class="col-md-4 control-label">
+											<span class="red">*</span>确认密码
+											<span class="glyphicon glyphicon-lock annotation symbol "></span>
+										</label>
+										<div class="col-md-8 ">
+											<input type="password" class="form-control" id="inputPassword2" placeholder="请确认您的密码">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="ipwd2"></div>
+									</div>
+									<div class="form-group" id="n1">
+										<label for="nickname" class="col-md-4 control-label">
+											<span class="red">*</span> 昵称
+											<span class="glyphicon glyphicon-star annotation symbol"></span>
+										</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" id="nickname" placeholder="请输入您的昵称">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="n2"></div>
+									</div>
+									<div class="form-group" id="acode1">
+										<label for="authCode" class="col-md-4 control-label">
+											<span class="red">*</span> 验证码
+											<span class="glyphicon glyphicon-refresh annotation symbol"></span>
+										</label>
+										<div class="col-md-8">
+
+											<input type="text" class="form-control" id="authCode" placeholder="请输入验证码">
+											<div id="abs"><canvas id="canvas"></canvas></div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="acode2"></div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row col-md-8 col-md-offset-2">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">用户选填信息</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-1 panel-body">
+								<form class="form-horizontal" role="form">
+									<div class="form-group" id="na1">
+										<label for="name" class="col-md-4 control-label">
+											姓名<span class="glyphicon glyphicon-user annotation symbol"></span>
+										</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" id="name" placeholder="请输入您的姓名">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="na2"></div>
+									</div>
+									<div class="form-group" id="tphone1">
+										<label for="telephone" class="col-md-4 control-label">
+											电话<span class="glyphicon glyphicon-earphone annotation symbol"></span>
+										</label>
+										<div class="col-md-8 ">
+											<input type="tel" class="form-control" id="telephone" placeholder="请输入您的电话">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="tphone2"></div>
+									</div>
+									<div class="form-group" id="em1">
+										<label for="email" class="col-md-4 control-label">
+											邮箱<span class="glyphicon glyphicon-envelope annotation symbol"></span>
+										</label>
+										<div class="col-md-8 ">
+											<input type="email" class="form-control" id="email" placeholder="请输入您的邮箱">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-8 col-md-push-4 annotation up1" id="em2"></div>
+									</div>
+									<div class="row col-md-6 col-md-offset-4">
+										<button type="button" class="btn btn-info btn-block" id="register">注册</button>
+										<div class="row">
+											<br>
+											<div class="alert alert-success" id="hide">
+											</div>
+										</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

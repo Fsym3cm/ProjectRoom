@@ -1,0 +1,95 @@
+.firstName{
+	color: blue;
+		}
+img{
+	width: 1000px;
+	clear: both;
+	display: block;
+	margin: auto;
+	margin-top: -50px;
+}
+.block{
+	height: 1px;
+	margin-top: 100px;
+	
+}
+#hide{
+	text-align: center;
+	vertical-align: middle;
+}
+.bgc{
+	background: #f9fafc;
+}
+body{
+	background: #f9fafc;
+}
+#search{
+	margin-top: -10px;
+}	
+.down{
+	margin-top: 30px;
+}
+.up{
+	margin-top: -5px;
+}
+.up1{
+	margin-top: -10px;
+}
+.annotation{
+	margin-left: 10px;
+	color: #A2A2A2;
+}
+a{
+	 text-decoration: none;
+	 color:inherit;  
+}
+a:hover {
+	text-decoration:none;
+	color: #3399cc;
+}
+.down1{
+	margin-top: 15px;;
+}
+.contentbgc{
+	background: #f9fafc;
+}
+.red{
+	color: red;
+}
+.symbol{
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 300px;
+	z-index: 2;
+}
+.symbol1{
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 370px;
+	z-index: 2;
+}
+.symbol2{
+    position: absolute;
+	margin-top: 18px;
+	margin-left: 175px;
+	z-index: 2;
+}
+.symbol3{
+    position: absolute;
+	margin-top: 105px;
+	margin-left: 770px;
+	z-index: 2;
+}
+.symbol4{
+   position: absolute;
+   margin-top: 10px;
+   margin-left: 280px;
+   z-index: 2;
+}
+#abs{
+	margin-top: -33px;
+	margin-left: 320px;;
+}
+#acode2{
+	margin-top: -130px;
+}
