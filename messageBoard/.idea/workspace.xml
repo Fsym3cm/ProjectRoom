@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="messageBoard:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="935a6b5b-68eb-452f-ab43-737debe46eb6" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="messageboard" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="messageboard" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="messageboard" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="messageboard: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="spring-beans.schema" />
+        <option value="Tag Library Descriptor" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="F:\Maven-Repository" />
+        <option name="mavenHome" value="F:/apache-maven-3.6.0-bin/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="F:\apache-maven-3.6.0-bin\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WEi0WyGfDFtrMk6esmQ0HuSjJB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IDEA Room\messageBoard\src\main\java" />
+      <recent name="F:\IDEA Room\messageBoard\src\main\webapp\static\views" />
+      <recent name="F:\IDEA Room\messageBoard\src\main\webapp\static" />
+      <recent name="F:\IDEA Room\messageBoard\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Demo03.test01">
+    <configuration name="Demo01.test07" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messageBoard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.Demo01" />
+      <option name="METHOD_NAME" value="test07" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo03.test01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messageBoard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.Demo03" />
+      <option name="METHOD_NAME" value="test01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo03.test02" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messageBoard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.Demo03" />
+      <option name="METHOD_NAME" value="test02" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo03.test03" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messageBoard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.Demo03" />
+      <option name="METHOD_NAME" value="test03" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo03.test05" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messageBoard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.Demo03" />
+      <option name="METHOD_NAME" value="test05" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="messageBoard:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/messageBoard" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_com_cm_messageBoard_2" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="57392" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="messageBoard:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.30" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8" nameIsGenerated="true">
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="messageBoard:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/messageBoard" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_com_cm_messageBoard" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="53171" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="com.cm.messageBoard:war exploded" />
+          <artifact name="messageBoard:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.Demo03.test01" />
+      <item itemvalue="JUnit.Demo01.test07" />
+      <item itemvalue="JUnit.Demo03.test02" />
+      <item itemvalue="JUnit.Demo03.test03" />
+      <item itemvalue="JUnit.Demo03.test05" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.30" />
+      <item itemvalue="Tomcat Server.Tomcat 8.0" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Demo03.test01" />
+        <item itemvalue="JUnit.Demo03.test02" />
+        <item itemvalue="JUnit.Demo03.test05" />
+        <item itemvalue="JUnit.Demo03.test03" />
+        <item itemvalue="JUnit.Demo01.test07" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.16871585" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="935a6b5b-68eb-452f-ab43-737debe46eb6" name="Default Changelist" comment="" />
+      <created>1576131270767</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576131270767</updated>
+      <workItem from="1576131272311" duration="5829000" />
+      <workItem from="1576137576074" duration="7251000" />
+      <workItem from="1576148684337" duration="4626000" />
+      <workItem from="1576153354073" duration="5983000" />
+      <workItem from="1576197883171" duration="41000" />
+      <workItem from="1576198238821" duration="7055000" />
+      <workItem from="1576205533767" duration="120000" />
+      <workItem from="1576206148112" duration="18221000" />
+      <workItem from="1576389199946" duration="17810000" />
+      <workItem from="1576458062876" duration="14537000" />
+      <workItem from="1576543713397" duration="599000" />
+      <workItem from="1576548919933" duration="19000" />
+      <workItem from="1576558558846" duration="368000" />
+      <workItem from="1576822466463" duration="2913000" />
+      <workItem from="1577082045077" duration="41000" />
+      <workItem from="1578720933382" duration="1538000" />
+      <workItem from="1578730993006" duration="539000" />
+      <workItem from="1578731563201" duration="143000" />
+      <workItem from="1578731728779" duration="279000" />
+      <workItem from="1578732033496" duration="161000" />
+      <workItem from="1578732217008" duration="66000" />
+      <workItem from="1578732305882" duration="289000" />
+      <workItem from="1578732657583" duration="2852000" />
+      <workItem from="1578735861432" duration="2635000" />
+      <workItem from="1578750609800" duration="23000" />
+      <workItem from="1578750655187" duration="754000" />
+      <workItem from="1578896210998" duration="3054000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="344" y="49" key="#Demo03.test03" timestamp="1578735899060">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="344" y="49" key="#Demo03.test03/0.0.1536.824@0.0.1536.824" timestamp="1578735899060" />
+    <state x="344" y="49" key="#Demo03.test04" timestamp="1578735663985">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="344" y="49" key="#Demo03.test04/0.0.1536.824@0.0.1536.824" timestamp="1578735663985" />
+    <state x="449" y="38" key="#Tomcat_9.0.29" timestamp="1578732492283">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="38" key="#Tomcat_9.0.29/0.0.1536.824@0.0.1536.824" timestamp="1578732492283" />
+    <state x="361" y="71" key="#Tomcat_Server" timestamp="1578732482516">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Tomcat_Server/0.0.1536.824@0.0.1536.824" timestamp="1578732482516" />
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578896421459">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1578896421459" />
+    <state x="360" y="71" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1578732690799">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="360" y="71" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.824@0.0.1536.824" timestamp="1578732690799" />
+    <state x="449" y="139" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578750619434">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="139" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1578750619434" />
+    <state x="549" y="152" key="FileChooserDialogImpl" timestamp="1578732736840">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="152" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578732736840" />
+    <state width="1216" height="287" key="GridCell.Tab.0.bottom" timestamp="1578904450735">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578904450735" />
+    <state width="1216" height="287" key="GridCell.Tab.0.center" timestamp="1578904450735">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578904450735" />
+    <state width="1216" height="287" key="GridCell.Tab.0.left" timestamp="1578904450735">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578904450735" />
+    <state width="1216" height="287" key="GridCell.Tab.0.right" timestamp="1578904450735">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578904450735" />
+    <state width="1216" height="287" key="GridCell.Tab.1.bottom" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.1.center" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.1.left" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.1.right" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.2.bottom" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.2.center" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.2.left" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state width="1216" height="287" key="GridCell.Tab.2.right" timestamp="1578904450736">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1216" height="287" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1578904450736" />
+    <state x="270" y="0" key="SettingsEditor" timestamp="1578732273009">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1578732273009" />
+  </component>
+</project>

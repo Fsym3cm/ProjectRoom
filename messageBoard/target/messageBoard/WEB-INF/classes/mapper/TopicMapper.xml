@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TopicMapper">
+    <select id="showAllTopic" resultType="topic">
+       SELECT * FROM messageboard.`topic`;
+    </select>
+
+    <select id="queryUserId" parameterType="int" resultType="topic">
+       SELECT * FROM messageboard.`topic` WHERE topic_id = #{topicId};
+    </select>
+
+    <insert id="insertTopic" parameterType="topic">
+        INSERT INTO `messageboard`.`topic`(`topic_title`, `topic_content`, `topic_time`, `topic_type`, `topic_name`, `topic_telephone`, `topic_email`)
+         VALUES (#{topicTitle}, #{topicContent}, #{topicTime}, #{topicType}, #{topicName}, #{topicTelephone}, #{topicEmail});
+    </insert>
+
+    <delete id="deleteTopic" parameterType="topic">
+        DELETE FROM `messageboard`.`topic` WHERE `topic_id` = #{topicId};
+    </delete>
+</mapper>

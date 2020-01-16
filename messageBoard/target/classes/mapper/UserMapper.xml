@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <select id="showAllUser" resultType="user">
+       SELECT * FROM messageboard.`user`;
+    </select>
+    
+    <select id="queryUserId" parameterType="int" resultType="user">
+       SELECT * FROM messageboard.`user` WHERE userid = #{userId};
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE `messageboard`.`user` SET `nickname` = #{nickname}, `name` = #{name}, `telephone` = #{telephone}, `email` = #{email}
+         WHERE `userid` = #{userId};
+    </update>
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO `messageboard`.`user`(`username`, `userpassword`, `usertype`, `nickname`, `name`, `telephone`, `email`)
+         VALUES (#{userName}, #{userPassword}, #{userType}, #{nickname}, #{name}, #{telephone}, #{email});
+    </insert>
+
+    <delete id="deleteById" parameterType="int">
+        delete from `messageboard`.`user` where userid= #{userId};
+    </delete>
+
+    <update id="updatePassword" parameterType="User">
+         UPDATE `messageboard`.`user` SET `userpassword` = #{userPassword} WHERE `userid` = #{userId};
+    </update>
+
+    <select id="loginUser" parameterType="string" resultType="int">
+         SELECT userid FROM `messageboard`.`user` WHERE username = #{userName} AND userpassword = #{userPassword};
+    </select>
+
+<!--    <select id="loginUser1" parameterType="User" resultType="int">-->
+<!--       SELECT userid FROM `messageboard`.`user` WHERE username = #{username} AND userpassword = #{userpassword};-->
+<!--    </select>-->
+</mapper>

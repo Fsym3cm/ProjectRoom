@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--Mybatis配置文件-->
+<configuration>
+
+    <settings> <!--开启驼峰命名法-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases><!--指定别名-->
+        <!-- <typeAlias type="model.User" alias="User"></typeAlias>-->
+        <!--指定包名，别名就是类名，首字母小写-->
+        <package name="model"/>
+    </typeAliases>
+
+    <mappers>
+        <!--包配置只适用于Mapper代理
+             加载映射文件的接口和文件-->
+        <package name="mapper"/>
+    </mappers>
+
+</configuration>

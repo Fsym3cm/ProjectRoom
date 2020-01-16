@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="messageboard" uuid="22b0b047-71c2-4ccf-8e92-349fddf98dd9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://114.215.196.31:3306/messageboard?DatabaseName=messageboard&amp;characterEncoding=utf8&amp;serverTimezone=UTC</jdbc-url>
+    </data-source>
+  </component>
+</project>
