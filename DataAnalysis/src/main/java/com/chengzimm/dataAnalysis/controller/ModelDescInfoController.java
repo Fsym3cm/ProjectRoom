@@ -15,11 +15,6 @@ public class ModelDescInfoController {
     @Autowired
     private ModelDescInfoService modelDescInfoService;
 
-    @RequestMapping("hello")
-    public String hello(){
-        return "hello world!";
-    }
-
     @RequestMapping("show")
     public List<ModelDescInfo> show(){
         return modelDescInfoService.list();
@@ -40,8 +35,9 @@ public class ModelDescInfoController {
     @RequestMapping("update")
     public Boolean update(@RequestBody ModelDescInfo modelDescInfo){
         ModelDescInfo info = new ModelDescInfo();
+        info.setMUid(modelDescInfo.getMUid());
         info.setKeywords(modelDescInfo.getKeywords());
-        return modelDescInfoService.updateById(modelDescInfo);
+        return modelDescInfoService.updateById(info);
     }
 
     @RequestMapping("remove")
