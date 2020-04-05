@@ -3,12 +3,18 @@ package com.chengzimm.dataAnalysis;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
+import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
+import com.chengzimm.dataAnalysis.service.impl.DataCollectServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.trees.J48;
 import weka.core.Instances;
 import weka.experiment.InstanceQuery;
+import weka.filters.Filter;
+import weka.filters.unsupervised.attribute.Remove;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -73,15 +79,24 @@ public class ServiceTests {
     }
 
     @Test
-    public void Average(){
+    public void dataset(){
         try {
             InstanceQuery query = new InstanceQuery();
-            query.setDatabaseURL("jdbc:mysql://localhost:3306/hla?DatabaseName=hla&characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false"); // 链接数据库
+            query.setDatabaseURL("jdbc:mysql://localhost:3306/hla?DatabaseName=hla&characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false "); // 链接数据库
             query.setUsername("root");
             query.setPassword("123456");
-            query.setQuery("select * from data_collect");
+            query.setQuery("select output_value, step from data_collect");
             Instances dataset = query.retrieveInstances();
-           // System.out.println(dataset.toString()); // 打印数据集
+
+            int len = dataset.numAttributes(); // 获取data1的属性个数
+            dataset.setClassIndex(len-1); //指定最后一个属性为data1的类标签
+
+            String[] options = new String[2];
+            options[0] = "-t";
+            options[1] = dataset.toString();
+
+            System.out.println(Evaluation.evaluateModel(new J48(), options));
+            System.out.println(dataset.toString()); // 打印数据集
         } catch (Exception e) {
             e.printStackTrace();
         }
