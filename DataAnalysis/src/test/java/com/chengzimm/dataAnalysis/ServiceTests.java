@@ -2,6 +2,7 @@ package com.chengzimm.dataAnalysis;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.chengzimm.dataAnalysis.dao.DataDao;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
@@ -9,15 +10,22 @@ import com.chengzimm.dataAnalysis.service.impl.DataCollectServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import weka.classifiers.AbstractClassifier;
+import weka.classifiers.Classifier;
+import weka.classifiers.bayes.NaiveBayesUpdateable;
 import weka.classifiers.evaluation.Evaluation;
+import weka.classifiers.functions.SimpleLinearRegression;
 import weka.classifiers.trees.J48;
+import weka.core.Instance;
 import weka.core.Instances;
+import weka.core.Utils;
 import weka.experiment.InstanceQuery;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 @SpringBootTest
 public class ServiceTests {
@@ -80,6 +88,7 @@ public class ServiceTests {
 
     @Test
     public void dataset(){
+        Classifier cfs = null;
         try {
             InstanceQuery query = new InstanceQuery();
             query.setDatabaseURL("jdbc:mysql://localhost:3306/hla?DatabaseName=hla&characterEncoding=utf8&serverTimezone=UTC&autoReconnect=true&useSSL=false "); // 链接数据库
@@ -89,13 +98,37 @@ public class ServiceTests {
             Instances dataset = query.retrieveInstances();
 
             int len = dataset.numAttributes(); // 获取data1的属性个数
-            dataset.setClassIndex(len-1); //指定最后一个属性为data1的类标签
+            dataset.setClassIndex(len - 1); //指定最后一个属性为data1的类标签
+            dataset.attribute(0);
 
-            String[] options = new String[2];
-            options[0] = "-t";
-            options[1] = dataset.toString();
+            SimpleLinearRegression slr = new SimpleLinearRegression();
+            // 6.分类器初始化参数 设置入参
+            slr.setDebug(false);//控制打印信息(改为true时程序控制台中没有变化)
+            // 7.进行线性回归分析
+            slr.buildClassifier(dataset);
+            // 8.评估
+            Evaluation eval = new Evaluation(dataset);
+            eval.evaluateModel(slr, dataset);
+            // 9.获取评价标准
+            Double mean = eval.meanAbsoluteError();//平均绝对误差 或 剩余（残差）平方和 ：越小越好
+            System.out.println(mean);
+            // 10.获取模型公式
+            String model = slr.toString();
+            double sum = dataset.numInstances();//获取预测实例的总数
 
-            System.out.println(Evaluation.evaluateModel(new J48(), options));
+            // 11.获取待预测的数据（sql2中的待预测数据用？表示）
+            DataDao dao = new DataDao();
+            dao.query("1", "1", 2.0);
+            Instances insTest = query.retrieveInstances();//获取待预测数据
+            insTest.setClassIndex(dataset.numAttributes() - 1);//设置成相同的属性下标，默认都是最后一个属性
+
+            // 方法二：调用分类器方法classifyInstance（Instance instance）循环输出每一个实例的预测值
+            double sum2 = insTest.numInstances(); //获取预测实例的总数
+            for(int i = 0; i < sum2; i++){
+                System.out.println(insTest.instance(i).value(0) + " : " + slr.classifyInstance(insTest.instance(i)));
+            }
+
+
             System.out.println(dataset.toString()); // 打印数据集
         } catch (Exception e) {
             e.printStackTrace();

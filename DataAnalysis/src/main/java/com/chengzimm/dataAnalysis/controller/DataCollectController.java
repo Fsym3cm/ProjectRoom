@@ -1,5 +1,6 @@
 package com.chengzimm.dataAnalysis.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import weka.classifiers.functions.SMO;
-import weka.core.Instances;
-import weka.experiment.InstanceQuery;
-
 import java.util.List;
 
 @RestController
@@ -50,19 +47,11 @@ public class DataCollectController {
         return dataCollectService.removeById(7);
     }
 
-    @RequestMapping("Average")
-    public Integer Average(){
-        try {
-            InstanceQuery query = new InstanceQuery();
-            query.setUsername("root");
-            query.setPassword("123456");
-            query.setQuery("select * from data_collect");
-            Instances dataset = query.retrieveInstances();
-            System.out.println(dataset.toString()); // 打印数据集
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return 1;
+    @RequestMapping("selectValue")
+    public List<DataCollect> selectValue(String federationId, String memberId, Double time){
+        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("output_value", "step");
+        queryWrapper.eq("federation_id", "1").eq("member_id", "1").eq("time", 1.0);
+        return dataCollectService.list(queryWrapper);
     }
 }
