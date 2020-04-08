@@ -1,6 +1,6 @@
 package com.chengzimm.dataAnalysis.dao;
 
-import com.chengzimm.dataAnalysis.connection.Connect;
+import com.chengzimm.dataAnalysis.utills.Connect;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import java.util.LinkedList;
 import java.util.List;

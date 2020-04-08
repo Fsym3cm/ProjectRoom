@@ -1,12 +1,9 @@
-package com.chengzimm.dataAnalysis.connection;
+package com.chengzimm.dataAnalysis.utills;
 
 import weka.core.Instances;
 import weka.experiment.InstanceQuery;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+
 
 public class Connect {
     public static Connection conn(String sql){
