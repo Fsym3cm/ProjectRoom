@@ -73,59 +73,37 @@
 <script>
 import axios from 'axios';
 export default {
-	methods: {
-	  handleEdit (index, rowData) {
-	    this.$notify({
-	      title: 'It works!',
-	      type: 'success',
-	      message: 'We\'ve laid the ground work for you. It\'s time for you to build something epic!',
-	      duration: 5000
-	    })
-	  }
-	},
     data() {
       return {
 		search: '',
 		
         tableData: [{
-          schemeId: '12987122',
-          schemeName: '好滋好味鸡蛋仔',
-          beginTime: '江浙小吃、小吃零食',
-          endTime: '荷兰优质淡奶，奶香浓而不腻',
-          generateDate: '上海市普陀区真北路',
-          schemeAuthor: '王小虎夫妻店',
-          schemeDesc: '10333',
+          schemeId: '666666',
+          schemeName: '反复横跳',
+          beginTime: '2020-04-01 19:23:41',
+          endTime: '2020-04-08 19:23:41',
+          generateDate: '2020-04-08',
+          schemeAuthor: '坂本',
+          schemeDesc: '帅就完事了',
 		  schemeFile: '',
 		  isPublish: ''
-        }, {
-          schemeId: '1298712',
-          schemeName: '好滋好味鸡蛋仔',
-          beginTime: '江浙小吃、小吃零食',
-          endTime: '荷兰优质淡奶，奶香浓而不腻',
-          generateDate: '上海市普陀区真北路',
-          schemeAuthor: '王小虎夫妻店',
-          schemeDesc: '10333',
-          schemeFile: '',
-          isPublish: ''
-        }, {
-          schemeId: '12987123',
-          schemeName: '好滋好味鸡蛋仔',
-          beginTime: '江浙小吃、小吃零食',
-          endTime: '荷兰优质淡奶，奶香浓而不腻',
-          generateDate: '上海市普陀区真北路',
-          schemeAuthor: '王小虎夫妻店',
-          schemeDesc: '10333',
-          schemeFile: '',
-          isPublish: ''
         }]
       }
     },
 	created(){
 		const _this = this
 		axios.get('http://localhost:8080/SimuScheme/show').then(res => {
-			console.log(res)   //查询成功返回的值
-			_this.tableData = res.data
+			console.log(res);   //查询成功返回的值
+			_this.tableData = res.data;
 			}).catch(error => { console.log(error) })   //查询失败返回的值
+	},
+	methods: {
+		handleEdit(index, row) {
+			this.$router.push('/addScheme');
+		},
+		handleDelete(index, row) {
+			console.log(index, row);
+		}
 	}
   }
 </script>
