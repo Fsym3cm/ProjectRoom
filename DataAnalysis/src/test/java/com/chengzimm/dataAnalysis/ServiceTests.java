@@ -87,6 +87,11 @@ public class ServiceTests {
     }
 
     @Test
+    public void getById(){
+        System.out.println(modelDescInfoService.getById(1));
+    }
+
+    @Test
     public void dataset(){
         Classifier cfs = null;
         try {

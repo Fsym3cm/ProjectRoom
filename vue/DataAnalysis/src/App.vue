@@ -4,7 +4,7 @@
 	  <el-col :span="4" ><div class="grid-content bg-purple-dark">仿真数据分析系统</div></el-col>
 	</el-row>
 	<el-container style="height: 665px; border: 1px solid #eee">
-	  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+	  <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
 	    <el-menu :default-openeds="['1']">
 	      <el-submenu index="1">
 	        <template slot="title"><i class="el-icon-message"></i>数据图</template>
@@ -20,9 +20,7 @@
 	          <template slot="title">操作</template>
 	          <el-menu-item index="2-1" @click="showScheme">查看</el-menu-item>
 	          <el-menu-item index="2-2" @click="addScheme">新增</el-menu-item>
-	        </el-menu-item-group>
-	        <el-menu-item-group title="分组2">
-	          <el-menu-item index="2-3" @click="showScheme">修改</el-menu-item>
+	          <el-menu-item index="2-3" @click="updateScheme">修改</el-menu-item>
 			  <el-menu-item index="2-4" @click="showScheme">删除</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
@@ -31,16 +29,16 @@
 		<el-tree
 		  :data="data"
 		  :props="defaultProps"
-		  @node-click="handleNodeClick">
+		  @node-click="schemeMassege">
 		</el-tree>
 		<br>
-		<el-tabs  v-model="activeName" type="card" @tab-click="handleClick">
+		<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
 		  <el-tab-pane label="历史查询方案">
 			  <el-tree
 			    :data="data"
 			    :props="defaultProps"
 			    accordion
-			    @node-click="handleNodeClick">
+			    @node-click="historicalQuery">
 			  </el-tree>
 		  </el-tab-pane>
 		  <el-tab-pane label="历史关联">
@@ -48,22 +46,22 @@
 			    :data="data"
 			    :props="defaultProps"
 			    accordion
-			    @node-click="handleNodeClick">
+			    @node-click="historicalConnection">
 			  </el-tree>
 		  </el-tab-pane>
 		  <el-tab-pane label="角色管理">
 			  <el-tree
-			    :data="data3"
+			    :data="data"
 			    :props="defaultProps"
 			    accordion
-			    @node-click="handleNodeClick">
+			    @node-click="roleManage">
 			  </el-tree>
 		  </el-tab-pane>
 		</el-tabs>
 	  </el-aside>
 	  
 	  <el-container>
-		  <el-header type="card" @tab-click="handleClick">    
+		  <el-header type="card">    
 		        <span>data</span>
 		  </el-header>
 		      
@@ -148,8 +146,23 @@ export default {
 		addScheme(){
 			this.$router.push('/addScheme');
 		},
-		handleNodeClick(data) {
-		        console.log(data);
+		updateScheme(){
+			this.$router.push('/updateScheme');
+		},
+		schemeMassege(data) {
+		    console.log(data);
+		},
+		handleClick(data) {
+		    console.log(data);
+		},
+		historicalQuery(data) {
+		    console.log(data);
+		},
+		historicalConnection(data) {
+		    console.log(data);
+		},
+		roleManage(data) {
+		    console.log(data);
 		}
 	}
 }

@@ -7,6 +7,7 @@ import Home from './components/Home.vue'
 import Chart from './components/Chart.vue'
 import Scheme from './components/Scheme.vue'
 import AddScheme from './components/AddScheme.vue'
+import UpdateScheme from './components/UpdateScheme.vue'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)//使用vue-router
@@ -17,6 +18,7 @@ const  router = new VueRouter({//定义一个常量来配置路由
         {path:"/chart", component:Chart},//配置路径与对应组件名
 		{path:"/scheme", component:Scheme},
 		{path:"/addScheme", component:AddScheme},
+		{path:"/updateScheme", component:UpdateScheme}
     ],
     mode:"history"//建议设置该属性，否则地址栏将出现“#”号，会影响后续编码
 })

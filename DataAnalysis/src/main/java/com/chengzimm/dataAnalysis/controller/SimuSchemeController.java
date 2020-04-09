@@ -4,11 +4,7 @@ import com.chengzimm.dataAnalysis.model.SimuScheme;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import com.chengzimm.dataAnalysis.utills.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.text.ParseException;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -24,13 +20,28 @@ public class SimuSchemeController {
         return simuSchemeService.list();
     }
 
-    @RequestMapping("save")
-    public Boolean save(@RequestBody SimuScheme simuScheme){
+    @RequestMapping("saveUTC")
+    public Boolean saveUTC(@RequestBody SimuScheme simuScheme){
         SimuScheme scheme = new SimuScheme();
+        System.out.println(simuScheme.getBeginTime());
         scheme.setSchemeName(simuScheme.getSchemeName());
         scheme.setBeginTime(DateUtil.dealDateFormat(simuScheme.getBeginTime()));
         scheme.setEndTime(DateUtil.dealDateFormat(simuScheme.getEndTime()));
         scheme.setGenerateDate(DateUtil.dealDateFormat(simuScheme.getGenerateDate()));
+        scheme.setSchemeAuthor(simuScheme.getSchemeAuthor());
+        scheme.setSchemeDesc(simuScheme.getSchemeDesc());
+        scheme.setSchemeFile(simuScheme.getSchemeFile());
+        scheme.setIsPublish(simuScheme.getIsPublish());
+        return simuSchemeService.save(scheme);
+    }
+
+    @RequestMapping("save")
+    public Boolean save(@RequestBody SimuScheme simuScheme){
+        SimuScheme scheme = new SimuScheme();
+        scheme.setSchemeName(simuScheme.getSchemeName());
+        scheme.setBeginTime(simuScheme.getBeginTime());
+        scheme.setEndTime(simuScheme.getEndTime());
+        scheme.setGenerateDate(simuScheme.getGenerateDate());
         scheme.setSchemeAuthor(simuScheme.getSchemeAuthor());
         scheme.setSchemeDesc(simuScheme.getSchemeDesc());
         scheme.setSchemeFile(simuScheme.getSchemeFile());
@@ -43,11 +54,23 @@ public class SimuSchemeController {
         SimuScheme scheme = new SimuScheme();
         scheme.setSchemeId(simuScheme.getSchemeId());
         scheme.setSchemeName(simuScheme.getSchemeName());
+        scheme.setBeginTime(simuScheme.getBeginTime());
+        scheme.setEndTime(simuScheme.getEndTime());
+        scheme.setGenerateDate(simuScheme.getGenerateDate());
+        scheme.setSchemeAuthor(simuScheme.getSchemeAuthor());
+        scheme.setSchemeDesc(simuScheme.getSchemeDesc());
+        scheme.setSchemeFile(simuScheme.getSchemeFile());
+        scheme.setIsPublish(simuScheme.getIsPublish());
         return simuSchemeService.updateById(scheme);
     }
 
-    @RequestMapping("remove")
-    public Boolean remove(@RequestBody SimuScheme simuScheme){
-        return simuSchemeService.removeById(7);
+    @RequestMapping("removeById/{schemeId}")
+    public Boolean removeById(@PathVariable("schemeId") Integer schemeId){
+        return simuSchemeService.removeById(schemeId);
+    }
+
+    @GetMapping("getById/{schemeId}")
+    public SimuScheme getById(@PathVariable("schemeId") Integer schemeId){
+        return simuSchemeService.getById(schemeId);
     }
 }

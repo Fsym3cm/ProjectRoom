@@ -99,10 +99,18 @@ export default {
 	},
 	methods: {
 		handleEdit(index, row) {
-			this.$router.push('/addScheme');
+			this.$router.push({
+				path:'/updateScheme',
+				query:{
+					schemeId: row.schemeId
+				}
+			});
 		},
 		handleDelete(index, row) {
-			console.log(index, row);
+			axios.get('http://localhost:8080/SimuScheme/removeById/'+row.schemeId).then(res => {
+				console.log(res);   //查询成功返回的值
+				location.reload();
+				}).catch(error => { console.log(error) })   //查询失败返回的值
 		}
 	}
   }
