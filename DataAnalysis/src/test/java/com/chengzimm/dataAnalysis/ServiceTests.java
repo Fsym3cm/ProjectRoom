@@ -3,35 +3,30 @@ package com.chengzimm.dataAnalysis;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chengzimm.dataAnalysis.dao.DataDao;
+import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
-import com.chengzimm.dataAnalysis.service.impl.DataCollectServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import weka.classifiers.AbstractClassifier;
 import weka.classifiers.Classifier;
-import weka.classifiers.bayes.NaiveBayesUpdateable;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.SimpleLinearRegression;
-import weka.classifiers.trees.J48;
-import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.Utils;
 import weka.experiment.InstanceQuery;
-import weka.filters.Filter;
-import weka.filters.unsupervised.attribute.Remove;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Random;
+
 
 @SpringBootTest
 public class ServiceTests {
 
     @Autowired
     private ModelDescInfoService modelDescInfoService;
+
+    @Autowired
+    private DataCollectService dataCollectService;
 
     @Test
     public void list(){
@@ -89,6 +84,14 @@ public class ServiceTests {
     @Test
     public void getById(){
         System.out.println(modelDescInfoService.getById(1));
+    }
+
+    @Test
+    public void showData(){
+        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("federation_id");
+        List<DataCollect> list = dataCollectService.list(queryWrapper);
+        list.forEach(System.out::println);
     }
 
     @Test

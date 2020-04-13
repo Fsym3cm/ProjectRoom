@@ -54,4 +54,10 @@ public class DataCollectController {
         queryWrapper.eq("federation_id", "1").eq("member_id", "1").eq("time", 1.0);
         return dataCollectService.list(queryWrapper);
     }
+
+    @RequestMapping("dataTree")
+    public List<DataCollect> dataTree(){
+        List<DataCollect> list = dataCollectService.list();
+        return list;
+    }
 }

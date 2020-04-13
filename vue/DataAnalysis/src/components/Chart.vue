@@ -38,19 +38,20 @@
 <script>
 import echarts from 'echarts';
 export default {
+  
   data() {
         return {
           options: [{
-            value: '属性1',
-            label: '黄金糕'
+            value: 'red',
+            label: '红色'
           }, {
-            value: '属性2',
-            label: '双皮奶'
+            value: 'green',
+            label: '绿色'
           }, {
-            value: '属性3',
-            label: '蚵仔煎'
+            value: 'blue',
+            label: '蓝色'
           }],
-          value: ''
+          value: 'red'
         }
       },
   mounted(){
@@ -76,7 +77,10 @@ export default {
 	  };
 	  // 使用刚指定的配置项和数据显示图表。
 	  myChart.setOption(option);
-	}
+	},
+	handleClick(tab, event) {
+	        console.log(tab, event);
+	      }
 }
 </script>
 
