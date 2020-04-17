@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -56,8 +60,45 @@ public class DataCollectController {
     }
 
     @RequestMapping("dataTree")
-    public List<DataCollect> dataTree(){
-        List<DataCollect> list = dataCollectService.list();
-        return list;
+    public List<DataCollect> dataTree() {
+        // 整体思路：
+        // 1、取得所有数据、放入集合List1 （tbCategories）
+        // 2、将List1所有数据都放入到map（treeMap）中：元素id为键，元素本身对象为值
+        // 3、取得顶层节点放入集合List2中（resultList）
+        // 4、遍历List1中的所有数据，通过数据的parentId为键在map中取值
+        //      1）如果能取到，则说明该元素有父节点
+        //           1、判断该父节点下的childList中是否有已经子节点
+        //              1、若无：则创建一个集合，将子节点放入
+        //              2、若有：则直接将子节点放入即可
+        // 5、把放好的数据放回到map中
+        // 6、返回List2（resultList）
+
+        // 注意：整个过程将所有数据取出放入list2（resultList）,返回的也是    //list2
+
+
+        List<DataCollect> tbCategories = dataCollectService.list();
+
+        List<DataCollect> resultList = new ArrayList<>(); // 存贮顶层的数据
+
+        Map<Object, Object> treeMap = new HashMap();
+        Object itemTree;
+
+        for (int i = 0; i < tbCategories.size() && !tbCategories.isEmpty(); i++) {
+            itemTree = tbCategories.get(i);
+            treeMap.put(tbCategories.get(i).getNodeId(), tbCategories.get(i));// 把所有的数据都放到map中
+        }
+        return resultList;
+    }
+
+    @RequestMapping("showSchemeId")
+    public List<String> showSchemeId(){
+        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("federation_id");
+        List<DataCollect> list = dataCollectService.list(queryWrapper);
+        List<String> temp = new ArrayList<>();
+        for (DataCollect dataCollect : list){
+            temp.add(dataCollect.getFederationId().substring(0, 1));
+        }
+        return temp;
     }
 }

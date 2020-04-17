@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chengzimm.dataAnalysis.dao.DataDao;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
+import com.chengzimm.dataAnalysis.model.SimuScheme;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
+import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +18,7 @@ import weka.classifiers.functions.SimpleLinearRegression;
 import weka.core.Instances;
 import weka.experiment.InstanceQuery;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +30,9 @@ public class ServiceTests {
 
     @Autowired
     private DataCollectService dataCollectService;
+
+    @Autowired
+    private SimuSchemeService SimuSchemeService;
 
     @Test
     public void list(){
@@ -91,7 +97,22 @@ public class ServiceTests {
         QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("federation_id");
         List<DataCollect> list = dataCollectService.list(queryWrapper);
-        list.forEach(System.out::println);
+        for (DataCollect dataCollect : list){
+            System.out.println(dataCollect.getFederationId().substring(0, 1));
+        }
+    }
+
+    @Test
+    public void getName(){
+        List<String> temp = new ArrayList<>();
+        List<String> list1 = new ArrayList<>();
+        list1.add("1");
+        list1.add("2");
+        list1.add("3");
+        for (int i = 0; i < list1.size(); i++){
+            temp.add(SimuSchemeService.getById(Integer.parseInt(list1.get(i))).getSchemeName());
+        }
+        System.out.println(temp);
     }
 
     @Test
