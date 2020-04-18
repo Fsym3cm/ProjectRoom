@@ -17,15 +17,40 @@ public class DataCollectServiceImpl extends ServiceImpl<DataCollectMapper, DataC
     @Autowired
     private DataCollectService dataCollectService;
 
+    QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+
     @Override
-    public List<String> showSchemeId() {
-        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+    public List<Integer> showSchemeId() {
         queryWrapper.select("federation_id");
         List<DataCollect> list = dataCollectService.list(queryWrapper);
-        List<String> temp = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
         for (DataCollect dataCollect : list){
-            temp.add(dataCollect.getFederationId().substring(0, 1));
+            temp.add(Integer.valueOf(dataCollect.getFederationId().substring(0, 1)));
         }
         return temp;
     }
+
+    @Override
+    public List<String> showMemberId() {
+        queryWrapper.select("member_id");
+        List<DataCollect> list = dataCollectService.list(queryWrapper);
+        List<String> temp = new ArrayList<>();
+        for (DataCollect dataCollect : list){
+            temp.add(dataCollect.getMemberId());
+        }
+        return temp;
+    }
+
+    @Override
+    public List<String> showAttr() {
+        queryWrapper.select("output_value", "step");
+        List<DataCollect> list = dataCollectService.list(queryWrapper);
+        List<String> temp = new ArrayList<>();
+        for (DataCollect dataCollect : list){
+            temp.add(dataCollect.getOutputValue());
+            temp.add(dataCollect.getStep().toString());
+        }
+        return temp;
+    }
+
 }

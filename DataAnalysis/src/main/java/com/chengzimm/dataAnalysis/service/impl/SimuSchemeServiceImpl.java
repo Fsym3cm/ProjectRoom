@@ -17,13 +17,13 @@ public class SimuSchemeServiceImpl extends ServiceImpl<SimuSchemeMapper, SimuSch
     private SimuSchemeService simuSchemeService;
 
     @Override
-    public List<String> getName(List<String> list) {
+    public List<String> getName(List<Integer> list) {
         List<String> temp = new ArrayList<>();
         System.out.println(list);
         for (int i = 0; i < list.size(); i++){
-            temp.add(list.get(i));
-            temp.add(simuSchemeService.getById(Integer.parseInt(list.get(i))).getSchemeName());
+            temp.add(simuSchemeService.getById(list.get(i)).getSchemeName());
         }
         return temp;
     }
+
 }

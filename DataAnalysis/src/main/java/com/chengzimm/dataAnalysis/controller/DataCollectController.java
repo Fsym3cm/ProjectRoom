@@ -2,6 +2,8 @@ package com.chengzimm.dataAnalysis.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chengzimm.dataAnalysis.model.DataCollect;
+import com.chengzimm.dataAnalysis.model.Member;
+import com.chengzimm.dataAnalysis.model.Scheme;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,14 +95,35 @@ public class DataCollectController {
 
 
     @RequestMapping("tree")
-    public List<List<String>> tree(){
-        List<String> shemes = simuSchemeService.getName(dataCollectService.showSchemeId());
-        List<List<String>> target = new ArrayList<>();
-        List<String> arrayList = new ArrayList<>();
-        List<List<String>> temp = new ArrayList<>();
-        for (String scheme : shemes){
-            temp.add(Collections.singletonList(scheme));
+    public List<Scheme> tree(){
+        List<Integer> schemeIds = dataCollectService.showSchemeId();
+        List<String> schemes = simuSchemeService.getName(schemeIds);
+        List<String> memberIds = dataCollectService.showMemberId();
+        List<String> attrs = dataCollectService.showAttr();
+
+        ArrayList<Scheme> SchemeList = new ArrayList<>();
+        for (int i = 0, j = 0; i < schemes.size(); i ++, j += 2){
+            ArrayList<Member> memberList = new ArrayList<>();
+            ArrayList<DataCollect> dataList = new ArrayList<>();
+
+            Scheme scheme = new Scheme();
+            Member member = new Member();
+            DataCollect dataCollect = new DataCollect();
+
+            scheme.setSchemeId(schemeIds.get(i));
+            scheme.setSchemeName(schemes.get(i));
+            scheme.setMemberList(memberList);
+            SchemeList.add(scheme);
+
+            member.setMemberId(memberIds.get(i));
+            member.setAttrList(dataList);
+            memberList.add(member);
+
+            dataCollect.setOutputValue(attrs.get(j));
+            dataCollect.setStep(Integer.parseInt(attrs.get(j + 1)));
+            dataList.add(dataCollect);
         }
-        return temp;
+
+        return SchemeList;
     }
 }
