@@ -75,13 +75,4 @@ public class SimuSchemeController {
     public SimuScheme getById(@PathVariable("schemeId") Integer schemeId){
         return simuSchemeService.getById(schemeId);
     }
-
-    @GetMapping("getName")
-    public List<String> getName(List<String> list){
-        List<String> temp = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++){
-            temp.add(simuSchemeService.getById(Integer.parseInt(list.get(i))).getSchemeName());
-        }
-        return temp;
-    }
 }

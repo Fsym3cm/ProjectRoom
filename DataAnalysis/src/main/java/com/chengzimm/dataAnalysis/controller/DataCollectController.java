@@ -3,16 +3,14 @@ package com.chengzimm.dataAnalysis.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
+import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -21,6 +19,9 @@ public class DataCollectController {
 
     @Autowired
     private DataCollectService dataCollectService;
+
+    @Autowired
+    private SimuSchemeService simuSchemeService;
 
     @RequestMapping("show")
     public List<DataCollect> show(){
@@ -83,21 +84,22 @@ public class DataCollectController {
         Map<Object, Object> treeMap = new HashMap();
         Object itemTree;
 
-        for (int i = 0; i < tbCategories.size() && !tbCategories.isEmpty(); i++) {
+        /*for (int i = 0; i < tbCategories.size() && !tbCategories.isEmpty(); i++) {
             itemTree = tbCategories.get(i);
             treeMap.put(tbCategories.get(i).getNodeId(), tbCategories.get(i));// 把所有的数据都放到map中
-        }
+        }*/
         return resultList;
     }
 
-    @RequestMapping("showSchemeId")
-    public List<String> showSchemeId(){
-        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("federation_id");
-        List<DataCollect> list = dataCollectService.list(queryWrapper);
-        List<String> temp = new ArrayList<>();
-        for (DataCollect dataCollect : list){
-            temp.add(dataCollect.getFederationId().substring(0, 1));
+
+    @RequestMapping("tree")
+    public List<List<String>> tree(){
+        List<String> shemes = simuSchemeService.getName(dataCollectService.showSchemeId());
+        List<List<String>> target = new ArrayList<>();
+        List<String> arrayList = new ArrayList<>();
+        List<List<String>> temp = new ArrayList<>();
+        for (String scheme : shemes){
+            temp.add(Collections.singletonList(scheme));
         }
         return temp;
     }
