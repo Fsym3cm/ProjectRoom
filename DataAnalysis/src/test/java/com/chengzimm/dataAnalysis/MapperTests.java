@@ -2,7 +2,10 @@ package com.chengzimm.dataAnalysis;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.chengzimm.dataAnalysis.mapper.DataCollectMapper;
 import com.chengzimm.dataAnalysis.mapper.ModelDescInfoMapper;
+import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,9 @@ class MapperTests {
 
     @Autowired
     private ModelDescInfoMapper modelDescInfoMapper;
+
+    @Autowired
+    private DataCollectMapper dataCollectMapper;
 
     @Test//查看所有信息
     public void testSelectList(){
@@ -54,5 +60,12 @@ class MapperTests {
         queryWrapper.isNull("sponsor");
         int delete = modelDescInfoMapper.delete(queryWrapper);
         System.out.println("删除了" + delete + "行数据");
+    }
+
+    @Test//查看所有信息
+    public void testData(){
+        List<DataCollect> dataCollect = dataCollectMapper.selectList(null);
+        
+        dataCollect.forEach(System.out::println);
     }
 }

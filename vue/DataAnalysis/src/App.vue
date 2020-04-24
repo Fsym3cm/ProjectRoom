@@ -83,50 +83,50 @@ export default {
 	        data: [{
 	          label: '方案名称：1',
 	          children: [{
-	            label: '运行次数：1',
+	            label: '成员ID：1',
 	            children: [{
-	              label: '成员ID：1'
+	              label: '属性：1'
 	            }]
 				},{
-				label: '运行次数：2',
+				label: '成员ID：2',
 				children: [{
-				  label: '成员ID：2',
+				  label: '属性：2',
 				 }]
 	          }]
 	        }, {
 	          label: '方案名称：2',
 	          children: [{
-	            label: '运行次数：1',
+	            label: '成员ID：1',
 	            children: [{
-	              label: '成员ID：1',
+	              label: '属性：1',
 				  }]
 	            },{
-				  label: '运行次数：2',
+				  label: '成员ID：2',
 				  children: [{
-				    label: '成员ID：2'
+				    label: '属性：2'
 				  }]
 	          }, {
-	            label: '运行次数：3',
+	            label: '成员ID：3',
 	            children: [{
-	              label: '成员ID：3'
+	              label: '属性：3'
 	            }]
 	          }]
 	        }, {
 	          label: '方案名称：3',
 	          children: [{
-	            label: '运行次数：1',
+	            label: '成员ID：1',
 	            children: [{
-	              label: '成员ID：1',
+	              label: '属性：1',
 	              }]
 	            },{
-				  label: '运行次数：2',
+				  label: '成员ID：2',
 				  children: [{
-					label: '成员ID：2'
+					label: '属性：2'
 				  }]
 	          }, {
-	            label: '运行次数：3',
+	            label: '成员ID：3',
 	            children: [{
-	              label: '成员ID：3'
+	              label: '属性：3'
 	            }]
 	          }]
 	        }],

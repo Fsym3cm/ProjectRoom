@@ -1,7 +1,9 @@
 package com.chengzimm.dataAnalysis;
 
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
 import com.chengzimm.dataAnalysis.dao.DataDao;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
@@ -9,6 +11,7 @@ import com.chengzimm.dataAnalysis.model.SimuScheme;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
+import com.chengzimm.dataAnalysis.utills.Deduplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +36,8 @@ public class ServiceTests {
 
     @Autowired
     private SimuSchemeService SimuSchemeService;
+
+    QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
 
     @Test
     public void list(){
@@ -94,7 +99,6 @@ public class ServiceTests {
 
     @Test
     public void showData(){
-        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("federation_id");
         List<DataCollect> list = dataCollectService.list(queryWrapper);
         for (DataCollect dataCollect : list){
@@ -113,6 +117,35 @@ public class ServiceTests {
             temp.add(SimuSchemeService.getById(Integer.parseInt(list1.get(i))).getSchemeName());
         }
         System.out.println(temp);
+    }
+
+    @Test
+    public void showDatas(){
+
+        for (int i = 0; i < 3; i++){
+            MyBatisPlusConfig.number = i;
+            queryWrapper.select("output_value", "step");
+            queryWrapper.orderByAsc("member_id");
+            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            for (DataCollect dataCollect : list){
+                System.out.println(dataCollect);
+            }
+        }
+    }
+
+    @Test
+    public void showMemberId() {
+        for (int i = 0; i < 3; i++){
+            List<String> temp = new ArrayList<>();
+            MyBatisPlusConfig.number = i;
+            queryWrapper.select("member_id");
+            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            for (DataCollect dataCollect : list){
+                temp.add(dataCollect.getMemberId());
+            }
+            List<String> list1 = Deduplication.deduplication(temp);
+            System.out.println(list1);
+        }
     }
 
     @Test

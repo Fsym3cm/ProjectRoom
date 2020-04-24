@@ -1,6 +1,7 @@
 package com.chengzimm.dataAnalysis.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chengzimm.dataAnalysis.model.Data;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.Member;
 import com.chengzimm.dataAnalysis.model.Scheme;
@@ -62,39 +63,59 @@ public class DataCollectController {
         return dataCollectService.list(queryWrapper);
     }
 
-    @RequestMapping("dataTree")
-    public List<DataCollect> dataTree() {
-        // 整体思路：
-        // 1、取得所有数据、放入集合List1 （tbCategories）
-        // 2、将List1所有数据都放入到map（treeMap）中：元素id为键，元素本身对象为值
-        // 3、取得顶层节点放入集合List2中（resultList）
-        // 4、遍历List1中的所有数据，通过数据的parentId为键在map中取值
-        //      1）如果能取到，则说明该元素有父节点
-        //           1、判断该父节点下的childList中是否有已经子节点
-        //              1、若无：则创建一个集合，将子节点放入
-        //              2、若有：则直接将子节点放入即可
-        // 5、把放好的数据放回到map中
-        // 6、返回List2（resultList）
-
-        // 注意：整个过程将所有数据取出放入list2（resultList）,返回的也是    //list2
+    @RequestMapping("tree")
+    public List<Scheme> tree(){
+        List<Integer> schemeIds = dataCollectService.showSchemeId();
+        List<String> schemes = simuSchemeService.getName(schemeIds);
+        List<List<String>> memberIds = dataCollectService.showMemberId();
+        List<List<String>> attrs = dataCollectService.showAttr();
 
 
-        List<DataCollect> tbCategories = dataCollectService.list();
+        ArrayList<Scheme> SchemeList = new ArrayList<>();
+        for (int i = 0; i < schemes.size(); i ++){
+//            System.out.println("第" + i + "次运行：");
+            ArrayList<Member> memberList = new ArrayList<>();
 
-        List<DataCollect> resultList = new ArrayList<>(); // 存贮顶层的数据
+            Scheme scheme = new Scheme();
+            scheme.setSchemeId(schemeIds.get(i));
+            scheme.setSchemeName(schemes.get(i));
+            scheme.setMemberList(memberList);
+            SchemeList.add(scheme);
 
-        Map<Object, Object> treeMap = new HashMap();
-        Object itemTree;
+            for (int m = 0; m < memberIds.get(i).size(); m++){
+                ArrayList<Data> dataList = new ArrayList<>();
 
-        /*for (int i = 0; i < tbCategories.size() && !tbCategories.isEmpty(); i++) {
-            itemTree = tbCategories.get(i);
-            treeMap.put(tbCategories.get(i).getNodeId(), tbCategories.get(i));// 把所有的数据都放到map中
-        }*/
-        return resultList;
+                Member member = new Member();
+                member.setMemberId(memberIds.get(i).get(m));
+                member.setAttrList(dataList);
+                memberList.add(member);
+
+                if (m == 0){
+                    for (int n = 0; n < attrs.get(i).size() - 2; n += 2){
+                        Data data = new Data();
+                        data.setOutputValue(attrs.get(i).get(n));
+                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
+                        dataList.add(data);
+                    }
+                } else if (m == 1){
+                    for (int n = 6; n < attrs.get(i).size(); n += 2){
+                        Data data = new Data();
+                        data.setOutputValue(attrs.get(i).get(n));
+                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
+                        dataList.add(data);
+                    }
+                }
+
+                }
+
+
+        }
+        System.out.println(memberIds);
+        System.out.println(attrs);
+        return SchemeList;
     }
 
-
-    @RequestMapping("tree")
+   /* @RequestMapping("tree")
     public List<Scheme> tree(){
         List<Integer> schemeIds = dataCollectService.showSchemeId();
         List<String> schemes = simuSchemeService.getName(schemeIds);
@@ -104,11 +125,11 @@ public class DataCollectController {
         ArrayList<Scheme> SchemeList = new ArrayList<>();
         for (int i = 0, j = 0; i < schemes.size(); i ++, j += 2){
             ArrayList<Member> memberList = new ArrayList<>();
-            ArrayList<DataCollect> dataList = new ArrayList<>();
+            ArrayList<Data> dataList = new ArrayList<>();
 
             Scheme scheme = new Scheme();
             Member member = new Member();
-            DataCollect dataCollect = new DataCollect();
+            Data data = new Data();
 
             scheme.setSchemeId(schemeIds.get(i));
             scheme.setSchemeName(schemes.get(i));
@@ -119,11 +140,13 @@ public class DataCollectController {
             member.setAttrList(dataList);
             memberList.add(member);
 
-            dataCollect.setOutputValue(attrs.get(j));
-            dataCollect.setStep(Integer.parseInt(attrs.get(j + 1)));
-            dataList.add(dataCollect);
+            data.setOutputValue(attrs.get(j));
+            data.setStep(Integer.parseInt(attrs.get(j + 1)));
+            dataList.add(data);
         }
 
         return SchemeList;
-    }
+    }*/
+
+
 }

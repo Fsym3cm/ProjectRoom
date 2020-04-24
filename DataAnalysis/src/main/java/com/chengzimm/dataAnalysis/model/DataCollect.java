@@ -1,8 +1,7 @@
 package com.chengzimm.dataAnalysis.model;
 
 import lombok.Data;
-
-import java.util.ArrayList;
+import lombok.experimental.Accessors;
 
 @Data
 public class DataCollect {

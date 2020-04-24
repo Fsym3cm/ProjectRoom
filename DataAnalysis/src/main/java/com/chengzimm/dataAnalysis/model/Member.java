@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Member {
 
     private String memberId;
-    private String memberName;
+//    private String memberName;
     private ArrayList attrList;
 
 }
