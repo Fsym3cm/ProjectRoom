@@ -32,32 +32,13 @@
 		  @node-click="schemeMassege">
 		</el-tree>
 		<br>
-		<el-tabs v-model="activeName" type="card" @tab-click="handleClick">
-		  <el-tab-pane label="历史查询方案">
-			  <el-tree
-			    :data="data"
-			    :props="defaultProps"
-			    accordion
-			    @node-click="historicalQuery">
-			  </el-tree>
-		  </el-tab-pane>
-		  <el-tab-pane label="历史关联">
-			  <el-tree
-			    :data="data"
-			    :props="defaultProps"
-			    accordion
-			    @node-click="historicalConnection">
-			  </el-tree>
-		  </el-tab-pane>
-		  <el-tab-pane label="角色管理">
-			  <el-tree
-			    :data="data"
-			    :props="defaultProps"
-			    accordion
-			    @node-click="roleManage">
-			  </el-tree>
-		  </el-tab-pane>
-		</el-tabs>
+		<el-row>历史查询方案</el-row>
+		<el-tree
+		  :data="data"
+		  :props="defaultProps"
+		  accordion
+		  @node-click="historicalQuery">
+		</el-tree>
 	  </el-aside>
 	  
 	  <el-container>
@@ -68,7 +49,6 @@
 		  <el-main>
 			  	<router-view></router-view>
 		  </el-main>
-		  
 	  </el-container>
 	</el-container>
 
@@ -76,6 +56,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
 	 data() {
 	      return {
@@ -136,6 +117,13 @@ export default {
 	        }
 	      };
 	    },
+		created(){
+		   const _this = this
+		   axios.get('http://localhost:8080/DataCollect/dateTree').then(res => {
+		   	console.log(res);   //查询成功返回的值
+		   	_this.data = res.data;
+		   	}).catch(error => { console.log(error) })   //查询失败返回的值
+		},
 	methods:{
 		showChart(){
 			this.$router.push('/chart');
@@ -152,18 +140,9 @@ export default {
 		schemeMassege(data) {
 		    console.log(data);
 		},
-		handleClick(data) {
-		    console.log(data);
-		},
 		historicalQuery(data) {
 		    console.log(data);
 		},
-		historicalConnection(data) {
-		    console.log(data);
-		},
-		roleManage(data) {
-		    console.log(data);
-		}
 	}
 }
 </script>

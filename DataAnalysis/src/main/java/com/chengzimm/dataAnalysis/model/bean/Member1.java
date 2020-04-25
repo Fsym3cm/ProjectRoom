@@ -1,14 +1,14 @@
-package com.chengzimm.dataAnalysis.model;
+package com.chengzimm.dataAnalysis.model.bean;
 
 import lombok.Data;
 
 import java.util.ArrayList;
 
 @Data
-public class Member {
+public class Member1 {
 
     private String memberId;
-//    private String memberName;
+    private String memberName;
     private ArrayList attrList;
 
 }

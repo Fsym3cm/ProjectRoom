@@ -5,14 +5,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
 import com.chengzimm.dataAnalysis.mapper.DataCollectMapper;
 import com.chengzimm.dataAnalysis.model.DataCollect;
-import com.chengzimm.dataAnalysis.model.Scheme;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.utills.Deduplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Service

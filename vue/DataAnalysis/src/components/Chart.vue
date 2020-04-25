@@ -42,16 +42,16 @@ export default {
   data() {
         return {
           options: [{
-            value: 'red',
-            label: '红色'
+            value: 'one',
+            label: '成员1'
           }, {
-            value: 'green',
-            label: '绿色'
+            value: 'two',
+            label: '成员2'
           }, {
-            value: 'blue',
-            label: '蓝色'
+            value: 'three',
+            label: '成员3'
           }],
-          value: 'red'
+          value: 'one'
         }
       },
   mounted(){

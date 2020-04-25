@@ -1,10 +1,8 @@
 package com.chengzimm.dataAnalysis.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chengzimm.dataAnalysis.model.Data;
+import com.chengzimm.dataAnalysis.model.bean.*;
 import com.chengzimm.dataAnalysis.model.DataCollect;
-import com.chengzimm.dataAnalysis.model.Member;
-import com.chengzimm.dataAnalysis.model.Scheme;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +62,55 @@ public class DataCollectController {
     }
 
     @RequestMapping("tree")
-    public List<Scheme> tree(){
+    public List<Scheme1> tree(){
+        List<Integer> schemeIds = dataCollectService.showSchemeId();
+        List<String> schemes = simuSchemeService.getName(schemeIds);
+        List<List<String>> memberIds = dataCollectService.showMemberId();
+        List<List<String>> attrs = dataCollectService.showAttr();
+
+
+        ArrayList<Scheme1> SchemeList = new ArrayList<>();
+        for (int i = 0; i < schemes.size(); i ++){
+//            System.out.println("第" + i + "次运行：");
+            ArrayList<Member1> memberList = new ArrayList<>();
+
+            Scheme1 scheme = new Scheme1();
+            scheme.setSchemeId(schemeIds.get(i));
+            scheme.setSchemeName(schemes.get(i));
+            scheme.setMemberList(memberList);
+            SchemeList.add(scheme);
+
+            for (int m = 0; m < memberIds.get(i).size(); m++){
+                ArrayList<Data1> dataList = new ArrayList<>();
+
+                Member1 member = new Member1();
+                member.setMemberId(memberIds.get(i).get(m));
+                member.setAttrList(dataList);
+                memberList.add(member);
+
+                if (m == 0){
+                    for (int n = 0; n < attrs.get(i).size() - 2; n += 2){
+                        Data1 data = new Data1();
+                        data.setOutputValue(attrs.get(i).get(n));
+                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
+                        dataList.add(data);
+                    }
+                } else if (m == 1){
+                    for (int n = 6; n < attrs.get(i).size(); n += 2){
+                        Data1 data = new Data1();
+                        data.setOutputValue(attrs.get(i).get(n));
+                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
+                        dataList.add(data);
+                    }
+                }
+
+                }
+        }
+        return SchemeList;
+    }
+
+    @RequestMapping("dateTree")
+    public List<Scheme> dateTree(){
         List<Integer> schemeIds = dataCollectService.showSchemeId();
         List<String> schemes = simuSchemeService.getName(schemeIds);
         List<List<String>> memberIds = dataCollectService.showMemberId();
@@ -77,44 +123,27 @@ public class DataCollectController {
             ArrayList<Member> memberList = new ArrayList<>();
 
             Scheme scheme = new Scheme();
-            scheme.setSchemeId(schemeIds.get(i));
-            scheme.setSchemeName(schemes.get(i));
-            scheme.setMemberList(memberList);
+            scheme.setLabel("方案名称：" + schemes.get(i));
+            scheme.setChildren(memberList);
             SchemeList.add(scheme);
 
             for (int m = 0; m < memberIds.get(i).size(); m++){
                 ArrayList<Data> dataList = new ArrayList<>();
 
                 Member member = new Member();
-                member.setMemberId(memberIds.get(i).get(m));
-                member.setAttrList(dataList);
+                member.setLabel("成员ID：" + memberIds.get(i).get(m));
+                member.setChildren(dataList);
                 memberList.add(member);
 
-                if (m == 0){
-                    for (int n = 0; n < attrs.get(i).size() - 2; n += 2){
-                        Data data = new Data();
-                        data.setOutputValue(attrs.get(i).get(n));
-                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
-                        dataList.add(data);
-                    }
-                } else if (m == 1){
-                    for (int n = 6; n < attrs.get(i).size(); n += 2){
-                        Data data = new Data();
-                        data.setOutputValue(attrs.get(i).get(n));
-                        data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
-                        dataList.add(data);
-                    }
-                }
-
-                }
+                Data data = new Data();
+                data.setLabel("运行信息");
+                dataList.add(data);
+            }
 
 
         }
-        System.out.println(memberIds);
-        System.out.println(attrs);
         return SchemeList;
     }
-
    /* @RequestMapping("tree")
     public List<Scheme> tree(){
         List<Integer> schemeIds = dataCollectService.showSchemeId();
