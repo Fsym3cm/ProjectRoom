@@ -1,16 +1,17 @@
 package com.chengzimm.dataAnalysis.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
+import com.chengzimm.dataAnalysis.model.SimuScheme;
 import com.chengzimm.dataAnalysis.model.bean.*;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
+import java.io.Serializable;
 import java.util.*;
 
 @RestController
@@ -24,13 +25,15 @@ public class DataCollectController {
     @Autowired
     private SimuSchemeService simuSchemeService;
 
+    QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+    
     @RequestMapping("show")
-    public List<DataCollect> show(){
+    public List<DataCollect> show() {
         return dataCollectService.list();
     }
 
     @RequestMapping("save")
-    public Boolean save(@RequestBody DataCollect dataCollect){
+    public Boolean save(@RequestBody DataCollect dataCollect) {
         DataCollect data = new DataCollect();
         data.setFederationId(dataCollect.getFederationId());
         data.setMemberId(dataCollect.getMemberId());
@@ -41,7 +44,7 @@ public class DataCollectController {
     }
 
     @RequestMapping("update")
-    public Boolean update(@RequestBody DataCollect dataCollect){
+    public Boolean update(@RequestBody DataCollect dataCollect) {
         DataCollect data = new DataCollect();
         data.setFederationId(dataCollect.getFederationId());
         data.setStep(dataCollect.getStep());
@@ -49,20 +52,19 @@ public class DataCollectController {
     }
 
     @RequestMapping("remove")
-    public Boolean remove(@RequestBody DataCollect dataCollect){
+    public Boolean remove(@RequestBody DataCollect dataCollect) {
         return dataCollectService.removeById(7);
     }
 
     @RequestMapping("selectValue")
-    public List<DataCollect> selectValue(String federationId, String memberId, Double time){
-        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+    public List<DataCollect> selectValue(String federationId, String memberId, Double time) {
         queryWrapper.select("output_value", "step");
         queryWrapper.eq("federation_id", "1").eq("member_id", "1").eq("time", 1.0);
         return dataCollectService.list(queryWrapper);
     }
 
     @RequestMapping("tree")
-    public List<Scheme1> tree(){
+    public List<Scheme1> tree() {
         List<Integer> schemeIds = dataCollectService.showSchemeId();
         List<String> schemes = simuSchemeService.getName(schemeIds);
         List<List<String>> memberIds = dataCollectService.showMemberId();
@@ -70,7 +72,7 @@ public class DataCollectController {
 
 
         ArrayList<Scheme1> SchemeList = new ArrayList<>();
-        for (int i = 0; i < schemes.size(); i ++){
+        for (int i = 0; i < schemes.size(); i++) {
 //            System.out.println("第" + i + "次运行：");
             ArrayList<Member1> memberList = new ArrayList<>();
 
@@ -80,7 +82,7 @@ public class DataCollectController {
             scheme.setMemberList(memberList);
             SchemeList.add(scheme);
 
-            for (int m = 0; m < memberIds.get(i).size(); m++){
+            for (int m = 0; m < memberIds.get(i).size(); m++) {
                 ArrayList<Data1> dataList = new ArrayList<>();
 
                 Member1 member = new Member1();
@@ -88,15 +90,15 @@ public class DataCollectController {
                 member.setAttrList(dataList);
                 memberList.add(member);
 
-                if (m == 0){
-                    for (int n = 0; n < attrs.get(i).size() - 2; n += 2){
+                if (m == 0) {
+                    for (int n = 0; n < attrs.get(i).size() - 2; n += 2) {
                         Data1 data = new Data1();
                         data.setOutputValue(attrs.get(i).get(n));
                         data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
                         dataList.add(data);
                     }
-                } else if (m == 1){
-                    for (int n = 6; n < attrs.get(i).size(); n += 2){
+                } else if (m == 1) {
+                    for (int n = 6; n < attrs.get(i).size(); n += 2) {
                         Data1 data = new Data1();
                         data.setOutputValue(attrs.get(i).get(n));
                         data.setStep(Integer.parseInt(attrs.get(i).get(n + 1)));
@@ -104,21 +106,23 @@ public class DataCollectController {
                     }
                 }
 
-                }
+            }
         }
         return SchemeList;
     }
 
     @RequestMapping("dateTree")
-    public List<Scheme> dateTree(){
+    public List<Scheme> dateTree() {
         List<Integer> schemeIds = dataCollectService.showSchemeId();
         List<String> schemes = simuSchemeService.getName(schemeIds);
         List<List<String>> memberIds = dataCollectService.showMemberId();
-        List<List<String>> attrs = dataCollectService.showAttr();
-
+        List<List<String>> federationIds = dataCollectService.showFederationId();
+        List<List<Integer>> groups = dataCollectService.group();
 
         ArrayList<Scheme> SchemeList = new ArrayList<>();
-        for (int i = 0; i < schemes.size(); i ++){
+        for (int i = 0; i < schemes.size(); i++) {
+
+
 //            System.out.println("第" + i + "次运行：");
             ArrayList<Member> memberList = new ArrayList<>();
 
@@ -127,7 +131,8 @@ public class DataCollectController {
             scheme.setChildren(memberList);
             SchemeList.add(scheme);
 
-            for (int m = 0; m < memberIds.get(i).size(); m++){
+            int n = 0;
+            for (int m = 0; m < memberIds.get(i).size(); m++) {
                 ArrayList<Data> dataList = new ArrayList<>();
 
                 Member member = new Member();
@@ -135,15 +140,34 @@ public class DataCollectController {
                 member.setChildren(dataList);
                 memberList.add(member);
 
-                Data data = new Data();
-                data.setLabel("运行信息");
-                dataList.add(data);
+                for (; n < groups.get(i).get(m); n++) {
+                    Data data = new Data();
+                    data.setLabel("运行信息：" + federationIds.get(i).get(n));
+                    dataList.add(data);
+                }
             }
-
 
         }
         return SchemeList;
     }
+
+    @RequestMapping("chartDate/{federationId}")
+    public DataCollect chartDate(@PathVariable("federationId") String federationId) {
+        DataCollect chartDate = null;
+        for (int i = 0; i < 3; i++){
+            MyBatisPlusConfig.number = i;
+            chartDate = dataCollectService.getById(federationId);
+            if (chartDate != null) {
+                 break;
+            }
+        }
+        System.out.println(chartDate);
+        return chartDate;
+    }
+
+
+}
+
    /* @RequestMapping("tree")
     public List<Scheme> tree(){
         List<Integer> schemeIds = dataCollectService.showSchemeId();
@@ -178,4 +202,3 @@ public class DataCollectController {
     }*/
 
 
-}

@@ -3,6 +3,7 @@ package com.chengzimm.dataAnalysis;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
 import com.chengzimm.dataAnalysis.mapper.DataCollectMapper;
 import com.chengzimm.dataAnalysis.mapper.ModelDescInfoMapper;
 import com.chengzimm.dataAnalysis.model.DataCollect;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -67,5 +69,18 @@ class MapperTests {
         List<DataCollect> dataCollect = dataCollectMapper.selectList(null);
         
         dataCollect.forEach(System.out::println);
+    }
+
+    @Test
+    public void groupNums(){
+
+        List<List<Integer>> target = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++){
+            MyBatisPlusConfig.number = i;
+            List<Integer> list = dataCollectMapper.group();
+            target.add(list);
+        }
+        System.out.println(target);
     }
 }

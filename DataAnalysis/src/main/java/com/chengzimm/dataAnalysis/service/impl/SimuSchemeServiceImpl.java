@@ -13,15 +13,16 @@ import java.util.List;
 @Service
 public class SimuSchemeServiceImpl extends ServiceImpl<SimuSchemeMapper, SimuScheme> implements SimuSchemeService {
 
+
     @Autowired
-    private SimuSchemeService simuSchemeService;
+    private SimuSchemeMapper simuSchemeMapper;
 
     @Override
     public List<String> getName(List<Integer> list) {
         List<String> temp = new ArrayList<>();
         System.out.println(list);
         for (int i = 0; i < list.size(); i++){
-            temp.add(simuSchemeService.getById(list.get(i)).getSchemeName());
+            temp.add(simuSchemeMapper.selectById(list.get(i)).getSchemeName());
         }
         return temp;
     }

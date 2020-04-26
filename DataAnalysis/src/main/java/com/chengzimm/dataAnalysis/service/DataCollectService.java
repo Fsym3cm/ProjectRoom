@@ -9,4 +9,6 @@ public interface DataCollectService extends IService<DataCollect> {
     List<Integer> showSchemeId();
     List<List<String>> showMemberId();
     List<List<String>> showAttr();
+    List<List<String>> showFederationId();
+    List<List<Integer>> group();
 }

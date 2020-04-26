@@ -9,7 +9,6 @@ import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.utills.Deduplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,27 +16,27 @@ import java.util.List;
 public class DataCollectServiceImpl extends ServiceImpl<DataCollectMapper, DataCollect> implements DataCollectService {
 
     @Autowired
-    private DataCollectService dataCollectService;
+    private DataCollectMapper dataCollectMapper;
 
     QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
 
     /*@Override
-    public List<Integer> showSchemeId() {
-        queryWrapper.select("federation_id");
-        List<DataCollect> list = dataCollectService.list(queryWrapper);
-        List<Integer> temp = new ArrayList<>();
-        for (DataCollect dataCollect : list){
-            temp.add(Integer.valueOf(dataCollect.getFederationId().substring(0, 1)));
-        }
-        return temp;
-    }*/
+        public List<Integer> showSchemeId() {
+            queryWrapper.select("federation_id");
+            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            List<Integer> temp = new ArrayList<>();
+            for (DataCollect dataCollect : list){
+                temp.add(Integer.valueOf(dataCollect.getFederationId().substring(0, 1)));
+            }
+            return temp;
+        }*/
     @Override
     public List<Integer> showSchemeId() {
         List<Integer> temp = new ArrayList<>();
         for (int i = 0; i < 3; i++){
             MyBatisPlusConfig.number = i;
             queryWrapper.select("federation_id");
-            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            List<DataCollect> list = dataCollectMapper.selectList(queryWrapper);
             temp.add(Integer.valueOf(list.get(0).getFederationId().substring(0, 1)));
         }
         return temp;
@@ -50,7 +49,7 @@ public class DataCollectServiceImpl extends ServiceImpl<DataCollectMapper, DataC
             List<String> temp = new ArrayList<>();
             MyBatisPlusConfig.number = i;
             queryWrapper.select("member_id");
-            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            List<DataCollect> list = dataCollectMapper.selectList(queryWrapper);
             for (DataCollect dataCollect : list){
                 temp.add(dataCollect.getMemberId());
             }
@@ -68,14 +67,52 @@ public class DataCollectServiceImpl extends ServiceImpl<DataCollectMapper, DataC
             MyBatisPlusConfig.number = i;
             queryWrapper.select("output_value", "step");
             queryWrapper.orderByAsc("member_id");
-            List<DataCollect> list = dataCollectService.list(queryWrapper);
+            List<DataCollect> list = dataCollectMapper.selectList(queryWrapper);
             for (DataCollect dataCollect : list){
                 temp.add(dataCollect.getOutputValue());
                 temp.add(dataCollect.getStep().toString());
             }
             target.add(temp);
         }
-        System.out.println(target);
+        return target;
+    }
+
+    @Override
+    public  List<List<String>> showFederationId() {
+        List<List<String>> target = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++){
+            List<String> temp = new ArrayList<>();
+            MyBatisPlusConfig.number = i;
+            queryWrapper.select("federation_id");
+            queryWrapper.orderByAsc("member_id");
+            List<DataCollect> list = dataCollectMapper.selectList(queryWrapper);
+            for (DataCollect dataCollect : list){
+                temp.add(dataCollect.getFederationId());
+            }
+            target.add(temp);
+        }
+        return target;
+    }
+
+    @Override
+    public List<List<Integer>> group() {
+        List<List<Integer>> target = new ArrayList<>();
+        for (int i = 0; i < 3; i++){
+            MyBatisPlusConfig.number = i;
+            List<Integer> list = dataCollectMapper.group();
+            List<Integer> temp = new ArrayList<>();
+            int sum = list.get(0);
+            for (int m = 0; m < list.size(); m++){
+                if (m == 0){
+                    temp.add(list.get(0));
+                }else {
+                    sum += list.get(m);
+                    temp.add(sum);
+                }
+            }
+            target.add(temp);
+        }
         return target;
     }
 }

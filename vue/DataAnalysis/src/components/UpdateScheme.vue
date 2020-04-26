@@ -92,7 +92,6 @@ export default {
 	},
 	methods: {
 	  onSubmit() {
-		  alert(this.$refs.from)
 		 axios.post('http://localhost:8080/SimuScheme/update',this.form).then(res => {
 			console.log(res);
 			alert('修改成功');
