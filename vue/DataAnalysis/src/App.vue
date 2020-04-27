@@ -139,11 +139,7 @@ export default {
 		},
 		schemeMassege(data) {
 			if (data.children == undefined){
-				const _this = this
-				axios.get('http://localhost:8080/DataCollect/chartDate/'+data.label.slice(5)).then(res => {
-					console.log(res);   //查询成功返回的值
-					// _this.form = res.data;
-					}).catch(error => { console.log(error) })   //查询失败返回的值
+				this.$router.push({path:'/chart',query:{federationId:data.label.slice(5)}});
 			}
 		},
 		historicalQuery(data) {

@@ -1,5 +1,6 @@
 <template>
 	<div id="charts">
+		<h3 align="center">{{title}} 数据图</h3>
 		<div id="chartsId"  class="el-container"></div>
 		<div class="footer">
 		统计信息
@@ -37,10 +38,11 @@
 
 <script>
 import echarts from 'echarts';
+import axios from 'axios';
 export default {
-  
   data() {
         return {
+		  title: 'echarts',
           options: [{
             value: 'one',
             label: '成员1'
@@ -54,13 +56,28 @@ export default {
           value: 'one'
         }
       },
-  mounted(){
+    watch: {
+		'$route' (to, from) {
+		  // 路由发生变化页面刷新
+			 // this.$router.go(0);
+			 const _this = this;
+			 axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.federationId).then(res => {
+				console.log(res);   //查询成功返回的值
+				_this.title = res.data.memberId;
+				}).catch(error => { console.log(error) })   //查询失败返回的值
+			}
+	  },
+	/* created(){
+		const _this = this;
+		axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.federationId).then(res => {
+			console.log(res);   //查询成功返回的值
+			_this.title = res.data.memberId;
+			}).catch(error => { console.log(error) })   //查询失败返回的值
+	  }, */
+    mounted(){
 	  var myChart = echarts.init(document.getElementById('chartsId'));
 	  // 指定图表的配置项和数据
 	  var option = {
-		  title: {
-			  text: 'ECharts 入门示例'
-		  },
 		  tooltip: {},
 		  legend: {
 			  data:['销量']
@@ -78,9 +95,12 @@ export default {
 	  // 使用刚指定的配置项和数据显示图表。
 	  myChart.setOption(option);
 	},
-	handleClick(tab, event) {
-	        console.log(tab, event);
-	      }
+	methods:{
+		handleClick(tab, event) {
+				console.log(tab, event);
+			  }, 
+	}
+	
 }
 </script>
 

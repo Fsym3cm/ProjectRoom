@@ -12,6 +12,7 @@ import UpdateScheme from './components/UpdateScheme.vue'
 Vue.use(ElementUI)
 Vue.use(VueRouter)//使用vue-router
 
+window.router=router
 const  router = new VueRouter({//定义一个常量来配置路由
     routes:[
         {path:"/home", component:Home},//配置路径与对应组件名
