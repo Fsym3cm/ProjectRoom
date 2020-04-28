@@ -60,10 +60,11 @@ export default {
 		'$route' (to, from) {
 		  // 路由发生变化页面刷新
 			 // this.$router.go(0);
+			  this.title = this.$route.query.memberId;
 			 const _this = this;
-			 axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.federationId).then(res => {
+			 axios.post('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.memberId +'/'+ this.$route.query.dataId).then(res => {
 				console.log(res);   //查询成功返回的值
-				_this.title = res.data.memberId;
+				// _this.title = res.data.memberId;
 				}).catch(error => { console.log(error) })   //查询失败返回的值
 			}
 	  },
@@ -94,6 +95,7 @@ export default {
 	  };
 	  // 使用刚指定的配置项和数据显示图表。
 	  myChart.setOption(option);
+	  this.title = this.$route.query.memberId;
 	},
 	methods:{
 		handleClick(tab, event) {

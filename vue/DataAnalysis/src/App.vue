@@ -18,7 +18,7 @@
 	        <template slot="title"><i class="el-icon-menu"></i>方案</template>
 	        <el-menu-item-group>
 	          <template slot="title">操作</template>
-	          <el-menu-item index="2-1" @click="showScheme">查看</el-menu-item>
+	          <el-menu-item index="2-1" @click="showScheme" >查看</el-menu-item>
 	          <el-menu-item index="2-2" @click="addScheme">新增</el-menu-item>
 	          <el-menu-item index="2-3" @click="updateScheme">修改</el-menu-item>
 			  <el-menu-item index="2-4" @click="showScheme">删除</el-menu-item>
@@ -47,7 +47,19 @@
 		  </el-header>
 		      
 		  <el-main>
-			  	<router-view></router-view>
+			
+			  <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
+				   
+			    <el-tab-pane
+			      v-for="(item, index) in editableTabs"
+			      :key="item.name"
+			      :label="item.title"
+			      :name="item.name"
+			    >
+				      <router-view></router-view>
+			    </el-tab-pane>
+			  </el-tabs>
+			  	
 		  </el-main>
 	  </el-container>
 	</el-container>
@@ -114,8 +126,15 @@ export default {
 	        defaultProps: {
 	          children: 'children',
 	          label: 'label'
-	        }
-	      };
+	        },
+			editableTabsValue: '1',
+				editableTabs: [{
+				  title: 'Tab 1',
+				  name: '1',
+				  content: 'Tab 1 content'
+				}],
+				tabIndex: 1
+			};
 	    },
 		created(){
 		   const _this = this
@@ -124,7 +143,17 @@ export default {
 		   	_this.data = res.data;
 		   	}).catch(error => { console.log(error) })   //查询失败返回的值
 		},
+		
 	methods:{
+		addTab() {
+			  let newTabName = ++this.tabIndex + '';
+			  this.editableTabs.push({
+				title: 'New Tab',
+				name: newTabName,
+				
+			  });
+			  this.editableTabsValue = newTabName;
+			},
 		showChart(){
 			this.$router.push('/chart');
 		},
@@ -139,12 +168,30 @@ export default {
 		},
 		schemeMassege(data) {
 			if (data.children == undefined){
-				this.$router.push({path:'/chart',query:{federationId:data.label.slice(5)}});
+				this.addTab();
+				this.$router.push({path:'/chart',query:{memberId:data.label.slice(5,6), dataId:data.label.slice(6,7) - 1}});
+				
 			}
 		},
 		historicalQuery(data) {
 		    console.log(data);
 		},
+		removeTab(targetName) {
+			let tabs = this.editableTabs;
+			let activeName = this.editableTabsValue;
+			if (activeName === targetName) {
+			  tabs.forEach((tab, index) => {
+				if (tab.name === targetName) {
+				  let nextTab = tabs[index + 1] || tabs[index - 1];
+				  if (nextTab) {
+					activeName = nextTab.name;
+				  }
+				}
+			  });
+			}
+		this.editableTabsValue = activeName;
+		this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+	  },
 	}
 }
 </script>

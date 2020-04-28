@@ -24,8 +24,6 @@ public class DataCollectController {
 
     @Autowired
     private SimuSchemeService simuSchemeService;
-
-    QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
     
     @RequestMapping("show")
     public List<DataCollect> show() {
@@ -58,6 +56,7 @@ public class DataCollectController {
 
     @RequestMapping("selectValue")
     public List<DataCollect> selectValue(String federationId, String memberId, Double time) {
+        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
         queryWrapper.select("output_value", "step");
         queryWrapper.eq("federation_id", "1").eq("member_id", "1").eq("time", 1.0);
         return dataCollectService.list(queryWrapper);
@@ -117,7 +116,7 @@ public class DataCollectController {
         List<String> schemes = simuSchemeService.getName(schemeIds);
         List<List<String>> memberIds = dataCollectService.showMemberId();
         List<List<String>> federationIds = dataCollectService.showFederationId();
-        List<List<Integer>> groups = dataCollectService.group();
+        //List<List<Integer>> groups = dataCollectService.group();
 
         ArrayList<Scheme> SchemeList = new ArrayList<>();
         for (int i = 0; i < schemes.size(); i++) {
@@ -131,7 +130,7 @@ public class DataCollectController {
             scheme.setChildren(memberList);
             SchemeList.add(scheme);
 
-            int n = 0;
+            //int n = 0;
             for (int m = 0; m < memberIds.get(i).size(); m++) {
                 ArrayList<Data> dataList = new ArrayList<>();
 
@@ -140,18 +139,36 @@ public class DataCollectController {
                 member.setChildren(dataList);
                 memberList.add(member);
 
-                for (; n < groups.get(i).get(m); n++) {
+               // for (; n < groups.get(i).get(m); n++) {
                     Data data = new Data();
-                    data.setLabel("运行信息：" + federationIds.get(i).get(n));
+                    data.setLabel("运行信息：" + memberIds.get(i).get(m) + federationIds.get(i).get(0).substring(0,1));
                     dataList.add(data);
-                }
+                //}
             }
 
         }
         return SchemeList;
     }
 
-    @RequestMapping("chartDate/{federationId}")
+    @RequestMapping("chartDate/{memberId}/{dataId}")
+    public List<Data1> chartDate(@PathVariable("memberId") String memberId, @PathVariable("dataId") Integer dataId) {
+        List<Data1> temp = new ArrayList<>();
+            MyBatisPlusConfig.number = dataId;
+            QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("member_id", memberId);
+            queryWrapper.orderByAsc("step");
+            List<DataCollect> list = dataCollectService.list(queryWrapper);
+
+            for (DataCollect dataCollect : list){
+                Data1 data1 = new Data1();
+                data1.setStep(dataCollect.getStep());
+                data1.setOutputValue(dataCollect.getOutputValue());
+                temp.add(data1);
+            }
+        System.out.println(temp);
+        return temp;
+    }
+    /*@RequestMapping("chartDate/{federationId}")
     public DataCollect chartDate(@PathVariable("federationId") String federationId) {
         DataCollect chartDate = null;
         for (int i = 0; i < 3; i++){
@@ -163,7 +180,7 @@ public class DataCollectController {
         }
         System.out.println(chartDate);
         return chartDate;
-    }
+    }*/
 
 
 }

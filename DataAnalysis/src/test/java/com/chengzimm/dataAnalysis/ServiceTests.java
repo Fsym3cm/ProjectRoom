@@ -7,6 +7,7 @@ import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
 import com.chengzimm.dataAnalysis.dao.DataDao;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.ModelDescInfo;
+import com.chengzimm.dataAnalysis.model.bean.Data1;
 import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.ModelDescInfoService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import weka.classifiers.Classifier;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.SimpleLinearRegression;
@@ -171,6 +173,23 @@ public class ServiceTests {
                 System.out.println(chartDate);
             }
         }
+    }
+
+    @Test
+    public void chartDate1() {
+        List<Data1> temp = new ArrayList<>();
+        MyBatisPlusConfig.number = 1;
+        queryWrapper.eq("member_id", "2");
+        queryWrapper.orderByAsc("step");
+        List<DataCollect> list = dataCollectService.list(queryWrapper);
+
+        for (DataCollect dataCollect : list){
+            Data1 data1 = new Data1();
+            data1.setStep(dataCollect.getStep());
+            data1.setOutputValue(dataCollect.getOutputValue());
+            temp.add(data1);
+        }
+        System.out.println(temp);
     }
 
     @Test
