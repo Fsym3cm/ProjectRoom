@@ -6,4 +6,5 @@
 
 网站运行效果见[www.chengzimm.com](www.chengzimm.com)
 # DateAnalysis
-基于Spring Boot和Vue + Element UI + Echarts的仿真数据分析系统
+基于Spring Boot + Mybatis plus的仿真数据分析系统
+Vue：DateAnalysis的前端项目使用Vue + Element UI + Echarts技术
