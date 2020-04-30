@@ -9,9 +9,6 @@ import com.chengzimm.dataAnalysis.service.DataCollectService;
 import com.chengzimm.dataAnalysis.service.SimuSchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.management.Query;
-import java.io.Serializable;
 import java.util.*;
 
 @RestController
@@ -104,7 +101,6 @@ public class DataCollectController {
                         dataList.add(data);
                     }
                 }
-
             }
         }
         return SchemeList;
@@ -168,6 +164,7 @@ public class DataCollectController {
         System.out.println(temp);
         return temp;
     }
+
     /*@RequestMapping("chartDate/{federationId}")
     public DataCollect chartDate(@PathVariable("federationId") String federationId) {
         DataCollect chartDate = null;

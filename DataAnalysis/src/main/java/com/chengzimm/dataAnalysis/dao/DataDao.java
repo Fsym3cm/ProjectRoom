@@ -1,5 +1,6 @@
 package com.chengzimm.dataAnalysis.dao;
 
+import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
 import com.chengzimm.dataAnalysis.utills.Connect;
 import com.chengzimm.dataAnalysis.model.DataCollect;
 import java.util.LinkedList;
@@ -9,19 +10,21 @@ import java.util.regex.Pattern;
 
 public class DataDao {
 
-    public List<DataCollect> query(String federationId, String memberId, Double time) {
+    public List<DataCollect> query(String dataId, String federationId, String memberId, Double time) {
         List<DataCollect> datas = new LinkedList<>();
         Pattern pattern = Pattern.compile("\\?");
-        String sql = "SELECT output_value, step FROM `data_collect` where federation_id = ? and member_id = ? and time = ?";
+        String sql = "SELECT output_value, step FROM `data_collect?` where federation_id = ? and member_id = ? and time = ?";
         StringBuffer buffer = new StringBuffer();
         Matcher matcher = pattern.matcher(sql);
         int i = 0;
         while (matcher.find()) {
             if (i == 0){
-                matcher.appendReplacement(buffer, federationId);
+                matcher.appendReplacement(buffer, dataId);
             } else if (i == 1){
+                matcher.appendReplacement(buffer, federationId);
+            } else if (i == 2){
                 matcher.appendReplacement(buffer, memberId);
-            } else {
+            }else {
                 matcher.appendReplacement(buffer, time.toString());
             }
             i++;
@@ -33,7 +36,9 @@ public class DataDao {
     }
 
     public static void main(String[] args) {
+
         DataDao dataDao = new DataDao();
-        dataDao.query("1", "1", 1.0);
+        dataDao.query("","101", "1", 1.0);
+        dataDao.query("_1","201", "1", 1.0);
     }
 }

@@ -1,6 +1,5 @@
 package com.chengzimm.dataAnalysis;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
@@ -15,8 +14,6 @@ import com.chengzimm.dataAnalysis.utills.Deduplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import weka.classifiers.Classifier;
 import weka.classifiers.evaluation.Evaluation;
 import weka.classifiers.functions.SimpleLinearRegression;
@@ -224,7 +221,7 @@ public class ServiceTests {
 
             // 11.获取待预测的数据（sql2中的待预测数据用？表示）
             DataDao dao = new DataDao();
-            dao.query("1", "1", 2.0);
+            dao.query("","1", "1", 2.0);
             Instances insTest = query.retrieveInstances();//获取待预测数据
             insTest.setClassIndex(dataset.numAttributes() - 1);//设置成相同的属性下标，默认都是最后一个属性
 

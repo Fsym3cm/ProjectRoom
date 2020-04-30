@@ -3,7 +3,7 @@
 		<h3 align="center">{{title}} 数据图</h3>
 		<div id="chartsId"  class="el-container"></div>
 		<div class="footer">
-		统计信息
+		统计信息{{value.label}}
 		 <el-row>
 			<el-col :span="8" :offset="1">
 				<template>选择属性
@@ -43,66 +43,80 @@ export default {
   data() {
         return {
 		  title: 'echarts',
+		  step: [10, 20, 30, 40, 50, 60, 70],
+		  outputValue: [820, 932, 901, 934, 1290, 1330, 1320],
           options: [{
             value: 'one',
-            label: '成员1'
+            label: '属性1'
           }, {
             value: 'two',
-            label: '成员2'
+            label: '属性2'
           }, {
             value: 'three',
-            label: '成员3'
+            label: '属性3'
           }],
           value: 'one'
         }
       },
     watch: {
 		'$route' (to, from) {
-		  // 路由发生变化页面刷新
-			 // this.$router.go(0);
-			  this.title = this.$route.query.memberId;
-			 const _this = this;
-			 axios.post('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.memberId +'/'+ this.$route.query.dataId).then(res => {
-				console.log(res);   //查询成功返回的值
-				// _this.title = res.data.memberId;
-				}).catch(error => { console.log(error) })   //查询失败返回的值
+			  this.created(); 
 			}
 	  },
-	/* created(){
-		const _this = this;
-		axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.federationId).then(res => {
-			console.log(res);   //查询成功返回的值
-			_this.title = res.data.memberId;
-			}).catch(error => { console.log(error) })   //查询失败返回的值
-	  }, */
     mounted(){
-	  var myChart = echarts.init(document.getElementById('chartsId'));
-	  // 指定图表的配置项和数据
-	  var option = {
-		  tooltip: {},
-		  legend: {
-			  data:['销量']
-		  },
-		  xAxis: {
-			  data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-		  },
-		  yAxis: {},
-		  series: [{
-			  name: '销量',
-			  type: 'bar',
-			  data: [5, 20, 36, 10, 10, 20]
-		  }]
-	  };
-	  // 使用刚指定的配置项和数据显示图表。
-	  myChart.setOption(option);
-	  this.title = this.$route.query.memberId;
+	  this.created(); 
 	},
 	methods:{
-		handleClick(tab, event) {
-				console.log(tab, event);
-			  }, 
-	}
-	
+		created(){
+			const _this = this;
+			
+			axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.memberId +'/'+ this.$route.query.dataId).then(res => {
+				console.log(res);   //查询成功返回的值
+				var step = [], outputValue = [];
+				for (let i in res.data) {
+				    /* let s = {}, o = {};
+					s[i] = res.data[i].step; 保留原来的数据格式
+					o[i] = res.data[i].outputValue; */
+					step.push(res.data[i].step)
+					outputValue.push(Number(res.data[i].outputValue))
+				}
+				_this.step = step;
+				_this.outputValue = outputValue;
+				this.drawLine('chartsId');
+				}).catch(error => { 
+					console.log(error);
+					this.drawLine('chartsId'); 
+					})   //查询失败返回的值
+		  },
+		  member(){
+			  
+			  },
+		  drawLine(id) {
+			  var myChart = echarts.init(document.getElementById(id));
+			  	myChart.showLoading();
+			    // 指定图表的配置项和数据
+			    var option = {
+			  	   legend: {
+			  	          data: [this.value]
+			  	      },
+			  		xAxis: {
+			  			type: 'category',
+			  			data: this.step
+			  		},
+			  		yAxis: {
+			  			type: 'value'
+			  		},
+			  		series: [{
+			  			name: this.value,
+			  			data: this.outputValue,
+			  			type: 'line'
+			  		}]
+			  	};
+			    myChart.hideLoading();
+			    myChart.setOption(option);
+			    this.title = this.$route.query.memberId;
+			  },
+	}	
 }
 </script>
 

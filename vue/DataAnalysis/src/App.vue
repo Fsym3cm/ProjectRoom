@@ -7,14 +7,6 @@
 	  <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
 	    <el-menu :default-openeds="['1']">
 	      <el-submenu index="1">
-	        <template slot="title"><i class="el-icon-message"></i>数据图</template>
-	        <el-menu-item-group>
-	          <template slot="title">操作</template>
-	          <el-menu-item index="1-1" @click="showChart">查看</el-menu-item>
-	          <!-- <el-menu-item index="1-2">新增</el-menu-item> -->
-	        </el-menu-item-group>
-	        </el-submenu>
-	      <el-submenu index="2">
 	        <template slot="title"><i class="el-icon-menu"></i>方案</template>
 	        <el-menu-item-group>
 	          <template slot="title">操作</template>
@@ -47,18 +39,17 @@
 		  </el-header>
 		      
 		  <el-main>
-			
-			  <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
-				   
+				<router-view></router-view>
+			  <!-- <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab"> 
 			    <el-tab-pane
 			      v-for="(item, index) in editableTabs"
 			      :key="item.name"
 			      :label="item.title"
 			      :name="item.name"
 			    >
-				      <router-view></router-view>
+				     <router-view></router-view>
 			    </el-tab-pane>
-			  </el-tabs>
+			  </el-tabs> -->
 			  	
 		  </el-main>
 	  </el-container>
@@ -154,9 +145,6 @@ export default {
 			  });
 			  this.editableTabsValue = newTabName;
 			},
-		showChart(){
-			this.$router.push('/chart');
-		},
 		showScheme(){
 			this.$router.push('/scheme');
 		},
@@ -168,7 +156,7 @@ export default {
 		},
 		schemeMassege(data) {
 			if (data.children == undefined){
-				this.addTab();
+				// this.addTab();
 				this.$router.push({path:'/chart',query:{memberId:data.label.slice(5,6), dataId:data.label.slice(6,7) - 1}});
 				
 			}
