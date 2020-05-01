@@ -7,16 +7,23 @@
 		 <el-row>
 			<el-col :span="8" :offset="1">
 				<template>选择属性
-				  <el-select v-model="value" placeholder="请选择">
+				  <el-select v-model="attr" placeholder="请选择">
 					<el-option
 					  v-for="item in options"
-					  :key="item.value"
+					  :key="item.attr"
 					  :label="item.label"
-					  :value="item.value">
+					  :value="item.attr">
 					</el-option>
 				  </el-select>
 				</template>
 		    </el-col>
+			<el-col :span="10" >
+				  <span class="demonstration">选择分析方法与成员</span>
+				    <el-cascader
+				      v-model="value"
+				      :options="methods"
+				      @change="handleChange"></el-cascader>
+			</el-col>
 		  </el-row>
 		 <el-row>
 			<el-col :span="2" :offset="1">平均数</el-col> 
@@ -32,6 +39,8 @@
 			   <div class="numArea">123</div>
 			</el-col> 
 		 </el-row>
+		
+		
 		</div>
 	</div>
 </template>
@@ -46,16 +55,58 @@ export default {
 		  step: [10, 20, 30, 40, 50, 60, 70],
 		  outputValue: [820, 932, 901, 934, 1290, 1330, 1320],
           options: [{
-            value: 'one',
+            attr: 'one',
             label: '属性1'
           }, {
-            value: 'two',
+            attr: 'two',
             label: '属性2'
           }, {
-            value: 'three',
+            attr: 'three',
             label: '属性3'
           }],
-          value: 'one'
+          attr: 'one',
+		  methods: [{
+		    value: '0',
+			label: '分类分析',
+			children: [{
+			  value: '0',
+			  label: '成员1'
+			}, {
+			  value: '1',
+			  label: '成员2'
+			}],
+			},{
+		    value: '1',
+		    label: '仿真时域',
+			children: [{
+			  value: '0',
+			  label: '成员1'
+			}, {
+			  value: '1',
+			  label: '成员2'
+			}],
+		  }, {
+		    value: '2',
+		    label: '线性回归',
+			children: [{
+			  value: '0',
+			  label: '成员1'
+			}, {
+			  value: '1',
+			  label: '成员2'
+			}],
+		  }, {
+		    value: '3',
+		    label: '关联分析',
+			children: [{
+			  value: '0',
+			  label: '成员1'
+			}, {
+			  value: '1',
+			  label: '成员2'
+			}],
+		  }],
+		  value: 'error',
         }
       },
     watch: {
@@ -69,7 +120,6 @@ export default {
 	methods:{
 		created(){
 			const _this = this;
-			
 			axios.get('http://localhost:8080/DataCollect/chartDate/'+this.$route.query.memberId +'/'+ this.$route.query.dataId).then(res => {
 				console.log(res);   //查询成功返回的值
 				var step = [], outputValue = [];
@@ -86,11 +136,27 @@ export default {
 				}).catch(error => { 
 					console.log(error);
 					this.drawLine('chartsId'); 
+				})   //查询失败返回的值
+				axios.get('http://localhost:8080/Compute/methodsTree/' + this.$route.query.dataId).then(res => {
+					console.log(res);   //查询成功返回的值
+					_this.methods = res.data;
+					}).catch(error => { 
+						console.log(error);
 					})   //查询失败返回的值
 		  },
-		  member(){
-			  
-			  },
+		  handleChange(value){
+			  console.log(value);
+			  if(value[0]  == 0){
+				  alert(1)
+			  } else if (value[0] == 1){
+				  alert(2)
+			  } else if (value[0] == 2){
+				  //线性回归
+				  alert(3)
+			  } else{
+				  alert(4)
+			  }
+		   },
 		  drawLine(id) {
 			  var myChart = echarts.init(document.getElementById(id));
 			  	myChart.showLoading();

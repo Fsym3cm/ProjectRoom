@@ -7,8 +7,7 @@ import java.util.ArrayList;
 @Data
 public class Member {
 
-    private String label; //memberId
-//    private String memberName;
-    private ArrayList children;/*attrList*/
+    private String label;
+    private ArrayList children;
 
 }

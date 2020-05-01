@@ -5,8 +5,9 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-public class Scheme {
+public class Method {
 
+    private String value;
     private String label;
     private ArrayList children;
 }

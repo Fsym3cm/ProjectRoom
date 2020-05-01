@@ -2,11 +2,9 @@ package com.chengzimm.dataAnalysis.model.bean;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-
 @Data
-public class Scheme {
+public class Member2 {
 
+    private String value;
     private String label;
-    private ArrayList children;
 }

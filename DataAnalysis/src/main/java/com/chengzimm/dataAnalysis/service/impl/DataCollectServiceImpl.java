@@ -60,6 +60,19 @@ public class DataCollectServiceImpl extends ServiceImpl<DataCollectMapper, DataC
     }
 
     @Override
+    public List<String> showMemberId(Integer dataId) {
+        List<String> temp = new ArrayList<>();
+        MyBatisPlusConfig.number = dataId;
+        queryWrapper.select("member_id");
+        List<DataCollect> list = dataCollectMapper.selectList(queryWrapper);
+        for (DataCollect dataCollect : list){
+            temp.add(dataCollect.getMemberId());
+        }
+        List<String> target = Deduplication.deduplication(temp);
+        return target;
+    }
+
+    @Override
     public List<List<String>> showAttr() {
         List<List<String>> target = new ArrayList<>();
         for (int i = 0; i < 3; i++){
