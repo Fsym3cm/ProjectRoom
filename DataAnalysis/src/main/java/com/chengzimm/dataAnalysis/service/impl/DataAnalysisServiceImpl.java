@@ -16,8 +16,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
     DataDao dataDao = new DataDao();
 
     @Override
-    public String outputValue(String dataId, String elementId) {
-        dataDao.queryByDataId("", "1", "2");
+    public String linearRegression(String elementId1, String elementId2, String dataId) {
+        dataDao.queryByDataId(dataId, elementId1, elementId2);
         System.out.println(Connect.dataset.toString());
         Connect.dataset.setClassIndex(Connect.dataset.numAttributes() - 1);
         LinearRegression linearRegression = new LinearRegression();
@@ -33,7 +33,6 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
         map.put('c', coef[2]);
         String res = JSON.toJSONString(map);
         System.out.println(res);
-        System.out.println(myLinearRegression);
         return res;
     }
 }

@@ -2,5 +2,5 @@ package com.chengzimm.dataAnalysis.service;
 
 public interface DataAnalysisService {
 
-    String outputValue(String dataId, String elementId);
+    String linearRegression(String elementId1, String elementId2, String dataId);
 }

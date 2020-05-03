@@ -39,8 +39,6 @@
 			   <div class="numArea">123</div>
 			</el-col> 
 		 </el-row>
-		
-		
 		</div>
 	</div>
 </template>
@@ -152,7 +150,9 @@ export default {
 				  alert(2)
 			  } else if (value[0] == 2){
 				  //线性回归
-				  alert(3)
+				  var memberId2 = parseInt(value[1]) + 1;
+				  var dataId = this.$route.query.dataId;
+				  this.$router.push({path:'/linearRegression',query:{memberId1:this.$route.query.memberId, memberId2:memberId2.toString(), dataId: dataId}});
 			  } else{
 				  alert(4)
 			  }

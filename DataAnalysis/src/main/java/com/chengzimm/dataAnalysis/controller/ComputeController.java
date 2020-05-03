@@ -1,5 +1,8 @@
 package com.chengzimm.dataAnalysis.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.chengzimm.dataAnalysis.config.MyBatisPlusConfig;
+import com.chengzimm.dataAnalysis.model.DataCollect;
 import com.chengzimm.dataAnalysis.model.bean.Member2;
 import com.chengzimm.dataAnalysis.model.bean.Method;
 import com.chengzimm.dataAnalysis.service.DataAnalysisService;
@@ -23,9 +26,52 @@ public class ComputeController {
     @Autowired
     private DataCollectService dataCollectService;
 
-    @RequestMapping("show")
-    public String show() {
-        return dataAnalysisService.outputValue("", "1");
+    @RequestMapping("linearRegression/{elementId1}/{elementId2}/{dataId}")
+    public List<List<Double>> linearRegression(@PathVariable("elementId1") String elementId1, @PathVariable("elementId2") String elementId2, @PathVariable("dataId") Integer dataId) {
+        String str = null;
+        List<List<Double>>  target = new ArrayList<>();
+        MyBatisPlusConfig.number = dataId;
+        QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("member_id", Integer.parseInt(elementId1));
+        queryWrapper.orderByAsc("step");
+
+        List<DataCollect> list1 = dataCollectService.list(queryWrapper);
+        queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("member_id", Integer.parseInt(elementId2));
+        queryWrapper.orderByAsc("step");
+        List<DataCollect> list2 = dataCollectService.list(queryWrapper);
+
+        int min = list1.size() < list2.size() ? list1.size() : list2.size();
+        int max = list1.size() > list2.size() ? list1.size() : list2.size();
+        for (int i = 0; i < min ; i++){
+            List<Double> arr = new ArrayList<>();
+            arr.add(Double.parseDouble(list1.get(i).getOutputValue()));
+            arr.add(Double.parseDouble(list2.get(i).getOutputValue()));
+            target.add(arr);
+        }
+       /* if (list1.size() > list2.size()){
+            for (int i = 0; i < max - min; i++){
+                List<Double> arr = new ArrayList<>();
+                arr.add(Double.parseDouble(list1.get(i).getOutputValue()));
+                target.add(arr);
+            }
+        } else {
+            for (int i = 0; i < max - min; i++){
+                List<Double> arr = new ArrayList<>();
+                arr.add(Double.parseDouble(list2.get(i).getOutputValue()));
+                target.add(arr);
+            }
+        }*/
+
+      /*  dataId = dataId - 1;
+        if (dataId != 0){
+            str = "_" + dataId.toString();
+            target.add(dataAnalysisService.linearRegression(elementId1, elementId2, str));
+        } else {
+            str = "";
+            target.add(dataAnalysisService.linearRegression(elementId1, elementId2, str));
+        }*/
+        return target;
     }
 
     @RequestMapping("methodsTree/{dataId}")

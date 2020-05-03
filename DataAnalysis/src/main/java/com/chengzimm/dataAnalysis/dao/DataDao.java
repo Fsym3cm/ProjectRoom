@@ -71,6 +71,5 @@ public class DataDao {
         System.out.println(Connect.dataset.toString());*/
         dataDao.queryByDataId("", "1", "2");
         System.out.println(Connect.dataset.toString());
-
     }
 }
