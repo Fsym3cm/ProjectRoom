@@ -1,14 +1,9 @@
 package com.chengzimm.dataAnalysis.dao;
 
-import com.alibaba.fastjson.JSON;
 import com.chengzimm.dataAnalysis.utills.Connect;
 import com.chengzimm.dataAnalysis.model.DataCollect;
-import weka.classifiers.functions.LinearRegression;
-
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
