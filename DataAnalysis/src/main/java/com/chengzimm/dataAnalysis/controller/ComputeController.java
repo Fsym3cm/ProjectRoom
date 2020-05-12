@@ -66,10 +66,10 @@ public class ComputeController {
       /*  dataId = dataId - 1;
         if (dataId != 0){
             str = "_" + dataId.toString();
-            target.add(dataAnalysisService.linearRegression(elementId1, elementId2, str));
+            return dataAnalysisService.linearRegression(elementId1, elementId2, str);
         } else {
             str = "";
-            target.add(dataAnalysisService.linearRegression(elementId1, elementId2, str));
+            return dataAnalysisService.linearRegression(elementId1, elementId2, str);
         }*/
         return target;
     }

@@ -6,7 +6,6 @@ import com.chengzimm.dataAnalysis.service.DataAnalysisService;
 import com.chengzimm.dataAnalysis.utills.Connect;
 import org.springframework.stereotype.Service;
 import weka.classifiers.functions.LinearRegression;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -45,8 +45,7 @@ export default {
 		  },
 		  drawLine(id) {
 			  var myChart = echarts.init(document.getElementById(id));
-			  	myChart.showLoading();
-				
+			  	
 				// See https://github.com/ecomfe/echarts-stat
 				var myRegression = ecStat.regression('linear', this.data);
 				
@@ -58,7 +57,7 @@ export default {
 			    var option = {
 			  	   title: {
 			  	           text: 'Linear Regression',
-			  	           subtext: 'By cm',
+			  	           // subtext: 'By cm',
 			  	           sublink: 'https://github.com/ecomfe/echarts-stat',
 			  	           left: 'center'
 			  	       },

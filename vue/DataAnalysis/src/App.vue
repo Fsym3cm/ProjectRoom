@@ -10,12 +10,19 @@
 	        <template slot="title"><i class="el-icon-menu"></i>方案</template>
 	        <el-menu-item-group>
 	          <template slot="title">操作</template>
-	          <el-menu-item index="2-1" @click="showScheme" >查看</el-menu-item>
-	          <el-menu-item index="2-2" @click="addScheme">新增</el-menu-item>
-	          <el-menu-item index="2-3" @click="updateScheme">修改</el-menu-item>
-			  <el-menu-item index="2-4" @click="showScheme">删除</el-menu-item>
+	          <el-menu-item index="1-1" @click="showScheme" >查看</el-menu-item>
+	          <el-menu-item index="1-2" @click="addScheme">新增</el-menu-item>
+	          <el-menu-item index="1-3" @click="updateScheme">修改</el-menu-item>
+			  <el-menu-item index="1-4" @click="showScheme">删除</el-menu-item>
 	        </el-menu-item-group>
 	      </el-submenu>
+		   <el-submenu index="2">
+			  <template slot="title"><i class="el-icon-setting"></i>数据重演</template>
+			  <el-menu-item-group>
+				<el-menu-item index="2-1"  @click="dataReplay" >数据重演</el-menu-item>
+				<el-menu-item index="2-2"  @click="selectTime" >选定时间段重演</el-menu-item>
+			  </el-menu-item-group>
+			</el-submenu>
 	    </el-menu><br>
 		<el-row>方案信息</el-row>
 		<el-tree
@@ -153,6 +160,12 @@ export default {
 		},
 		updateScheme(){
 			this.$router.push('/updateScheme');
+		},
+		dataReplay(){
+			this.$router.push('/dataReplay');
+		},
+		selectTime(){
+			this.$router.push('/selectTime');
 		},
 		schemeMassege(data) {
 			if (data.children == undefined){
