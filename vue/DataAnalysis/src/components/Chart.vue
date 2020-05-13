@@ -28,15 +28,15 @@
 		 <el-row>
 			<el-col :span="2" :offset="1">平均数</el-col> 
 			<el-col :span="4">
-			   <div class="numArea">123</div>
+			   <div class="numArea">1000</div>
 			</el-col> 
 			<el-col :span="2">方差</el-col>
 			<el-col :span="4">
-			   <div class="numArea">123</div>
+			   <div class="numArea">28</div>
 			</el-col> 
 			<el-col :span="2">标准差</el-col>
 			<el-col :span="4">
-			   <div class="numArea">123</div>
+			   <div class="numArea">5.29</div>
 			</el-col> 
 		 </el-row>
 		</div>
