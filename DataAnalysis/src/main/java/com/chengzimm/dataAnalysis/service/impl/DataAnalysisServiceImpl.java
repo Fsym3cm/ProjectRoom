@@ -44,6 +44,11 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
         return res;
     }
 
+    public static void main(String[] args) {
+        DataAnalysisService dataAnalysisService = new DataAnalysisServiceImpl();
+        dataAnalysisService.linearRegression("1","2","");
+    }
+
     @Override
     public Double Average(String elementId, Integer dataId) {
         QueryWrapper<DataCollect> queryWrapper = new QueryWrapper<>();

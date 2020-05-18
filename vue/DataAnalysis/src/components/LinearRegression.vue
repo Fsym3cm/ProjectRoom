@@ -44,7 +44,7 @@ export default {
 				})   //查询失败返回的值		
 		  },
 		  drawLine(id) {
-			  var myChart = echarts.init(document.getElementById(id));
+			    var myChart = echarts.init(document.getElementById(id));
 			  	
 				// See https://github.com/ecomfe/echarts-stat
 				var myRegression = ecStat.regression('linear', this.data);

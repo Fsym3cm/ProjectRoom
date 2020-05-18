@@ -20,12 +20,12 @@
 			<el-col :span="8" >
 				 <div class="block">
 					<span class="demonstration">调整速度</span>
-					<el-slider v-model="value1" :format-tooltip="formatTooltip"></el-slider>
+					<el-slider v-model="value1" :max="5" @change="formatTooltip"></el-slider>
 				  </div>
 			</el-col>
 			<el-col :span="4" :offset="1">
 				<span class="demonstration">暂停键</span>
-				<el-button  class="el-icon-video-play" size="mini" type="info" round></el-button>
+				<el-button  class="el-icon-video-play" size="mini" type="info" round  @click="stop" ></el-button>
 			</el-col>
 		  </el-row>	  
 		</div>
@@ -40,7 +40,7 @@ export default {
   data() {
         return {
 		  title: 'echarts',	
-		  value1: 5,
+		  value1: 1,
 		  data: [],
 		  options: [{
 		    attr: 'one',
@@ -56,16 +56,75 @@ export default {
       }
    },
     mounted(){
-	  this.created(); 
+	  this.random_Data(); 
 	},
 	methods:{
-		created(){
-			this.random_Data();
-		},
-		 formatTooltip(val) {
-		     
-		},
-		random_Data() { //把代码封装到一个方法里
+		formatTooltip(val) { 
+		    },
+		stop() {
+			clearInterval(this.myVar);
+			  function randomData() {
+				now = now + 100;
+				value = value + Math.random() * 21 - 10;
+				return {
+				  name: now.toString(),
+				  value: [
+					now,
+					Math.round(value)
+				  ]
+				};
+			  }
+			  var data = [];
+			  var now = 0;
+			  var value = Math.random() * 1000;
+			  for (var i = 0; i < 1000; i++) {
+				data.push(randomData());
+			  }
+			  var myChart = echarts.init(document.getElementById('replay'));
+			  let option = { //加个let
+				title: {
+				  text: " 仿真数据重演",
+				  subtext: ' 默认开始时间为08:00:00',
+				},
+				tooltip: {
+				  trigger: "axis",
+				  formatter: function(params) {
+					params = params[0];
+					var date = new Date(params.name);
+					return (
+					  date.getDate()
+					);
+				  },
+				  axisPointer: {
+					animation: false
+				  }
+				},
+				xAxis: {
+				  type: "time",
+				  splitLine: {
+					show: false
+				  }
+				},
+				yAxis: {
+				  type: "value",
+				  boundaryGap: [0, "100%"],
+				  splitLine: {
+					show: false
+				  }
+				},
+				series: [
+				  {
+					name: "模拟数据",
+					type: "line",
+					showSymbol: false,
+					hoverAnimation: false,
+					data: data
+				  }
+				]
+			  };
+			  	myChart.setOption(option,true);
+			},
+		random_Data(state) { //把代码封装到一个方法里
 		      function randomData() {
 		        now = now + 100;
 		        value = value + Math.random() * 21 - 10;
@@ -125,24 +184,24 @@ export default {
 		          }
 		        ]
 		      };
-			  
-		      setInterval(function() {
-		        for (var i = 0; i < 5; i++) {
-		          data.shift();
-		          data.push(randomData());
-		        }
-		        //这个换成下方的一句代码，不然会报错（series.type should be specified.）
-		        // myChart.setOption({
-		        //   series: [
-		        //     {
-		        //       data: data
-		        //     }
-		        //   ]
-		        // });
-		        myChart.setOption(option);
-		      }, 1000);
-		    }
-			  
+			  var myVar = setInterval(function() {
+					   
+						for (var i = 0; i < 5; i++) {
+						  data.shift();
+						  data.push(randomData());
+						}
+						//这个换成下方的一句代码，不然会报错（series.type should be specified.）
+						// myChart.setOption({
+						//   series: [
+						//     {
+						//       data: data
+						//     }
+						//   ]
+						// });
+						myChart.setOption(option,true);
+				  }, 1000);	
+		},	  
+		   	  
 	}	
 }
 </script>

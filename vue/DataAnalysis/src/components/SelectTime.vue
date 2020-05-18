@@ -28,7 +28,8 @@
 					    range-separator="-"
 					    start-placeholder="开始时间"
 					    end-placeholder="结束时间"
-					    placeholder="选择时间范围">
+					    placeholder="选择时间范围"
+						@change="time1">
 					  </el-time-picker>
 			</el-col>
 		  </el-row>
@@ -60,15 +61,9 @@ export default {
 		  attr: 'one',
       }
    },
-    mounted(){
-	  this.created(); 
-	},
 	methods:{
-		created(){
-			this.random_Data(100000);
-		},
-		 formatTooltip(val) {
-		     
+		 time1() {
+		     this.random_Data(100000); 
 		},
 		random_Data(now) { //把代码封装到一个方法里
 		      function randomData() {
