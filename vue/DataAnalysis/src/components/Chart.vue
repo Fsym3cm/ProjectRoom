@@ -154,7 +154,9 @@ export default {
 				  var dataId = this.$route.query.dataId;
 				  this.$router.push({path:'/linearRegression',query:{memberId1:this.$route.query.memberId, memberId2:memberId2.toString(), dataId: dataId}});
 			  } else{
-				  alert(4)
+				  var memberId2 = parseInt(value[1]) + 1;
+				  var dataId = this.$route.query.dataId;
+				  this.$router.push({path:'/correlation',query:{memberId1:this.$route.query.memberId, memberId2:memberId2.toString(), dataId: dataId}});
 			  }
 		   },
 		  drawLine(id) {

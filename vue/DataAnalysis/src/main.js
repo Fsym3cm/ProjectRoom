@@ -11,6 +11,7 @@ import UpdateScheme from './components/UpdateScheme.vue'
 import LinearRegression from './components/LinearRegression.vue'
 import DataReplay from './components/DataReplay.vue'
 import SelectTime from './components/SelectTime.vue'
+import Correlation from './components/Correlation.vue'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)//使用vue-router
@@ -26,6 +27,7 @@ const  router = new VueRouter({//定义一个常量来配置路由
 		{path:"/linearRegression", component:LinearRegression},
 		{path:"/dataReplay", component:DataReplay},
 		{path:"/selectTime", component:SelectTime},
+		{path:"/correlation", component:Correlation},
     ],
     mode:"history"//建议设置该属性，否则地址栏将出现“#”号，会影响后续编码
 })
