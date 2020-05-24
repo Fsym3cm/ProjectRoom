@@ -12,20 +12,9 @@ export default {
   data() {
         return {
 		  title: 'echarts',
-		  step: [10, 20, 30, 40, 50, 60, 70],
-		  outputValue: [820, 932, 901, 934, 1290, 1330, 1320],
-          options: [{
-            attr: 'one',
-            label: '属性1'
-          }, {
-            attr: 'two',
-            label: '属性2'
-          }, {
-            attr: 'three',
-            label: '属性3'
-          }],
-          attr: 'one',
-		  value: 'error',
+		  step: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '110', '120'],
+		  outputValue1: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+		  outputValue2: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7],
         }
       },
     watch: {
@@ -81,7 +70,6 @@ export default {
 			  	           }
 			  	       },
 			  	       legend: {
-						  
 			  	           data:['成员一', '成员二']
 			  	       },
 			  	       grid: {
@@ -108,7 +96,7 @@ export default {
 			  	                       }
 			  	                   }
 			  	               },
-			  	               data: ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '110', '120']
+			  	               data: this.step
 			  	           },
 			  	           {
 			  	               type: 'category',
@@ -129,7 +117,7 @@ export default {
 			  	                       }
 			  	                   }
 			  	               },
-			  	               data:['10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '110', '120']
+			  	               data:this.step
 			  	           }
 			  	       ],
 			  	       yAxis: [
@@ -143,13 +131,13 @@ export default {
 			  	               type: 'line',
 			  	               xAxisIndex: 1,
 			  	               smooth: true,
-			  	               data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+			  	               data: this.outputValue1
 			  	           },
 			  	           {
 			  	               name: '成员二',
 			  	               type: 'line',
 			  	               smooth: true,
-			  	               data: [3.9, 5.9, 11.1, 18.7, 48.3, 69.2, 231.6, 46.6, 55.4, 18.4, 10.3, 0.7]
+			  	               data: this.outputValue2
 			  	           }
 			  	       ]
 			  	};
